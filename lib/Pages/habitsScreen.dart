@@ -15,6 +15,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
     return Scaffold(
       appBar: getTopAppBar("Habit"),
       bottomNavigationBar: const BottomNavbar(),
+      body: Text('Habits'),
     );
   }
 }

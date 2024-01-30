@@ -9,12 +9,7 @@ class BottomNavbar extends StatefulWidget {
 }
 
 class _BottomNavbarState extends State<BottomNavbar> {
-  int _selectedIndex = 1;
-  void onTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+  void onTapped(int index) {}
 
   @override
   Widget build(BuildContext context) {
@@ -29,24 +24,4 @@ class _BottomNavbarState extends State<BottomNavbar> {
       onTap: onTapped,
     );
   }
-}/*
-items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.bar_chart_outlined,
-            ),
-            label: "Journal"),
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-            ),
-            label: "Home"),
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.checklist,
-            ),
-            label: "Habits")
-      ],
-      currentIndex: _selectedIndex,
-      onTap: onTapped,
-      */
+}

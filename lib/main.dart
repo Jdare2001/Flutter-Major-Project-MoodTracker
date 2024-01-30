@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:moodtracker/Pages/habitsScreen.dart';
 import 'package:moodtracker/Pages/homeScreen.dart';
+import 'package:moodtracker/Pages/journalScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +21,11 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: const HomePage(),
+      routes: {
+        "/homePage": (context) => const HomePage(),
+        "/journalPage": (context) => const JournalScreen(),
+        "/habitsPage": (context) => const HabitsScreen(),
+      },
     );
   }
 }

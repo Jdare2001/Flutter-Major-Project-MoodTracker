@@ -6,6 +6,7 @@ getTopAppBar(String title) {
     actions: const [
       IconButton(onPressed: settingsOnPressed, icon: Icon(Icons.settings))
     ],
+    backgroundColor: Colors.lightBlue.shade200,
     centerTitle: false,
   );
 }

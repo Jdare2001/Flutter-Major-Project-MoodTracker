@@ -15,6 +15,7 @@ class _JournalScreenState extends State<JournalScreen> {
     return Scaffold(
       appBar: getTopAppBar("Journal"),
       bottomNavigationBar: const BottomNavbar(),
+      body: Text("Journal"),
     );
   }
 }

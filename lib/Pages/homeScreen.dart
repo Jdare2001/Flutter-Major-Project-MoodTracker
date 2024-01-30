@@ -15,6 +15,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: getTopAppBar("Welcome Back"),
       bottomNavigationBar: BottomNavbar(),
+      body: Text("Home Screen"),
     );
   }
 }
