@@ -1,3 +1,4 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavbar extends StatefulWidget {
@@ -17,8 +18,19 @@ class _BottomNavbarState extends State<BottomNavbar> {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      items: const <BottomNavigationBarItem>[
+    return CurvedNavigationBar(
+      color: Colors.lightBlue.shade200,
+      backgroundColor: Colors.white,
+      items: const [
+        Icon(Icons.bar_chart_outlined),
+        Icon(Icons.home),
+        Icon(Icons.check_box)
+      ],
+      onTap: onTapped,
+    );
+  }
+}/*
+items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
             icon: Icon(
               Icons.bar_chart_outlined,
@@ -37,6 +49,4 @@ class _BottomNavbarState extends State<BottomNavbar> {
       ],
       currentIndex: _selectedIndex,
       onTap: onTapped,
-    );
-  }
-}
+      */
