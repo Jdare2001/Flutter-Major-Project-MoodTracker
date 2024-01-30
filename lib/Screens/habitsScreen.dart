@@ -13,8 +13,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: getTopAppBar("Habit"),
-      bottomNavigationBar: const BottomNavbar(),
+      appBar: getTopAppBar("Habits"),
       body: Text('Habits'),
     );
   }

@@ -14,7 +14,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: getTopAppBar("Welcome Back"),
-      bottomNavigationBar: BottomNavbar(),
       body: Text("Home Screen"),
     );
   }
