@@ -37,6 +37,8 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
                     style: TextStyle(fontSize: 20),
                   ),
                   const SizedBox(height: 30),
+                  Text(getMessage(rating),
+                      style: const TextStyle(fontSize: 20)),
                   Slider(
                     value: rating,
                     onChanged: (newRating) {
@@ -69,5 +71,46 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
         ),
       ),
     );
+  }
+
+  String getMessage(rating) {
+    String message = 'test';
+    switch (rating) {
+      case 0:
+        message = "0 - Worst Day Ever";
+        break;
+      case 1:
+        message = "1 - Really Awful";
+        break;
+      case 2:
+        message = "2 - Very Bad";
+        break;
+      case 3:
+        message = "3 - Sad";
+        break;
+      case 4:
+        message = "4 - Could Be Better";
+        break;
+      case 5:
+        message = "5 - Content";
+        break;
+      case 6:
+        message = "6 - Chearful";
+        break;
+      case 7:
+        message = "7 - Happy";
+        break;
+      case 8:
+        message = "8 - Very Happy";
+        break;
+      case 9:
+        message = "9 - Elated";
+        break;
+      case 10:
+        message = "10 - Best Day Ever";
+        break;
+    }
+
+    return message;
   }
 }
