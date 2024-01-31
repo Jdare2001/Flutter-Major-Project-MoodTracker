@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodtracker/utilities/bottomnavbar.dart';
+
 import 'package:moodtracker/utilities/topAppBar.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,7 +13,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: getTopAppBar("Welcome Back"),
+      appBar: getTopAppBar("Welcome Back", context),
       body: Text("Home Screen"),
     );
   }

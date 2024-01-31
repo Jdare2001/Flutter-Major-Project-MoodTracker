@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodtracker/utilities/bottomnavbar.dart';
+
 import 'package:moodtracker/utilities/topAppBar.dart';
 
 class JournalScreen extends StatefulWidget {
@@ -13,7 +13,7 @@ class _JournalScreenState extends State<JournalScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: getTopAppBar("Journal"),
+      appBar: getTopAppBar("Journal", context),
       body: Text("Journal"),
     );
   }
