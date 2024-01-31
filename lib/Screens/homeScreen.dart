@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:moodtracker/utilities/topAppBar.dart';
+import 'package:sizer/sizer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,7 +18,9 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Column(
           children: [
-            const SizedBox(height: 100),
+            Container(
+              height: 7.h,
+            ),
             Container(
               height: 200,
               width: 380,
@@ -56,8 +59,8 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 200,
+            SizedBox(
+              height: 35.h,
             ),
             ElevatedButton(
               onPressed: () {
