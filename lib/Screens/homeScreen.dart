@@ -55,6 +55,19 @@ class _HomePageState extends State<HomePage> {
                   )
                 ],
               ),
+            ),
+            const SizedBox(
+              height: 320,
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.lightBlue.shade200,
+                  padding: const EdgeInsets.all(20)),
+              child: const Text(
+                "Do Daily Check In",
+                style: TextStyle(color: Colors.black, fontSize: 20),
+              ),
             )
           ],
         ),
@@ -62,5 +75,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-void settingsOnPressed() {}
