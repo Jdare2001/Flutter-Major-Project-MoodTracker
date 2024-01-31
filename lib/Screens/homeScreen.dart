@@ -57,10 +57,12 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             const SizedBox(
-              height: 320,
+              height: 200,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/DailyCheckIn');
+              },
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.lightBlue.shade200,
                   padding: const EdgeInsets.all(20)),
