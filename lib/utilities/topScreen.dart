@@ -30,8 +30,8 @@ class _TopLevelScreenState extends State<TopLevelScreen> {
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: CurvedNavigationBar(
-        color: Colors.lightBlue.shade200,
-        backgroundColor: Colors.white,
+        color: Theme.of(context).colorScheme.primary,
+        backgroundColor: Theme.of(context).colorScheme.background,
         index: 1,
         items: const [
           Icon(Icons.bar_chart_outlined),

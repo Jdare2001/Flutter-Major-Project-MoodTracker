@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
               width: 380,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
-                color: Colors.lightBlue.shade200,
+                color: Theme.of(context).colorScheme.primary,
               ),
               child: Row(
                 children: [
@@ -35,9 +35,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                   CircularPercentIndicator(
                     radius: 50,
-                    backgroundColor: Colors.white,
+                    backgroundColor: Theme.of(context).colorScheme.background,
                     percent: 0.74,
-                    progressColor: Colors.deepPurple,
+                    progressColor: Theme.of(context).colorScheme.secondary,
                   ),
                   const SizedBox(
                     width: 15,
@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.pushNamed(context, '/DailyCheckIn');
               },
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.lightBlue.shade200,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   padding: const EdgeInsets.all(20)),
               child: const Text(
                 "Do Daily Check In",
