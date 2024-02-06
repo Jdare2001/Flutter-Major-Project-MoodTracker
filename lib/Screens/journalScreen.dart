@@ -14,7 +14,7 @@ class _JournalScreenState extends State<JournalScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: getTopAppBar("Journal", context),
-      body: Text("Journal"),
+      body: const Text("Journal"),
     );
   }
 }

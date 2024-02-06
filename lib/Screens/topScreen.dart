@@ -15,9 +15,9 @@ class _TopLevelScreenState extends State<TopLevelScreen> {
   int _selectedIndex = 1;
 
   final List<Widget> _pages = [
-    JournalScreen(),
-    HomePage(),
-    HabitsScreen(),
+    const JournalScreen(),
+    const HomePage(),
+    const HabitsScreen(),
   ];
   onTapped(int index) {
     setState(() {
