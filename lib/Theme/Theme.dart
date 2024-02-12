@@ -21,7 +21,7 @@ ThemeData lightMode = ThemeData(
 
 ThemeData darkMode = ThemeData(
   brightness: Brightness.dark,
-  colorScheme: const ColorScheme.dark(
+  colorScheme: ColorScheme.dark(
     background: Colors.black12,
     primary: Colors.black,
     secondary: Colors.green,
