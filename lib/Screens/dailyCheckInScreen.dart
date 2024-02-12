@@ -26,19 +26,22 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
               height: 200,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
-                color: Colors.lightBlue.shade200,
+                color: Theme.of(context).colorScheme.tertiary,
               ),
               child: Column(
                 children: [
                   const SizedBox(height: 30),
                   const Text(
                     'How Happy have you been today?',
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 20, color: Colors.black),
                   ),
                   const SizedBox(height: 30),
                   Text(getMessage(rating),
-                      style: const TextStyle(fontSize: 20)),
+                      style:
+                          const TextStyle(fontSize: 20, color: Colors.black)),
                   Slider(
+                    activeColor: Theme.of(context).colorScheme.secondary,
+                    inactiveColor: Theme.of(context).colorScheme.background,
                     value: rating,
                     onChanged: (newRating) {
                       setState(() => rating = newRating);
@@ -59,7 +62,7 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
                 Navigator.pop(context);
               },
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.lightBlue.shade200,
+                  backgroundColor: Theme.of(context).colorScheme.tertiary,
                   padding: const EdgeInsets.all(20)),
               child: const Text(
                 "Submit",

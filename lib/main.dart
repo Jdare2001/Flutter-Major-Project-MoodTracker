@@ -5,7 +5,8 @@ import 'package:moodtracker/Screens/habitsScreen.dart';
 import 'package:moodtracker/Screens/homeScreen.dart';
 import 'package:moodtracker/Screens/journalScreen.dart';
 import 'package:moodtracker/Screens/settingsScreen.dart';
-import 'package:moodtracker/Screens/topScreen.dart';
+import 'package:moodtracker/utilities/topScreen.dart';
+import 'package:moodtracker/Theme/Theme.dart';
 import 'package:sizer/sizer.dart';
 
 void main() {
@@ -27,10 +28,8 @@ class MyApp extends StatelessWidget {
       builder: (context, orientation, screenType) {
         return MaterialApp(
           title: 'Mood Tracker',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-          ),
+          theme: lightMode,
+          darkTheme: darkMode,
           debugShowCheckedModeBanner: false,
           home: const TopLevelScreen(),
           routes: {
