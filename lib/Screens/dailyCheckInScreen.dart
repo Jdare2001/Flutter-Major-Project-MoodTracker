@@ -15,7 +15,6 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: getTopAppBar('Daily Check In', context),
-      backgroundColor: Theme.of(context).colorScheme.background,
       body: Center(
         child: Column(
           children: [
