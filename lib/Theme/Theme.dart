@@ -7,6 +7,14 @@ ThemeData lightMode = ThemeData(
     primary: Colors.lightBlue.shade200,
     secondary: Colors.deepPurple,
   ),
+  iconTheme: const IconThemeData(
+    color: Colors.black,
+  ),
+  appBarTheme: const AppBarTheme(
+      actionsIconTheme: IconThemeData(
+        color: Colors.black,
+      ),
+      titleTextStyle: TextStyle(color: Colors.black, fontSize: 30)),
 );
 
 ThemeData darkMode = ThemeData();
