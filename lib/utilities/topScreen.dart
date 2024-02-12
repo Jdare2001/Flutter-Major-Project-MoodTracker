@@ -33,10 +33,19 @@ class _TopLevelScreenState extends State<TopLevelScreen> {
         color: Theme.of(context).colorScheme.primary,
         backgroundColor: Theme.of(context).colorScheme.background,
         index: 1,
-        items: const [
-          Icon(Icons.bar_chart_outlined),
-          Icon(Icons.home),
-          Icon(Icons.check_box)
+        items: [
+          Icon(
+            Icons.bar_chart_outlined,
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
+          Icon(
+            Icons.home,
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
+          Icon(
+            Icons.check_box,
+            color: Theme.of(context).colorScheme.onSurface,
+          )
         ],
         onTap: onTapped,
       ),

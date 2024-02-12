@@ -7,6 +7,7 @@ ThemeData lightMode = ThemeData(
     primary: Colors.lightBlue.shade200,
     secondary: Colors.deepPurple,
     tertiary: Colors.lightBlue.shade200,
+    onSurface: Colors.black,
   ),
   iconTheme: const IconThemeData(
     color: Colors.black,
@@ -20,16 +21,15 @@ ThemeData lightMode = ThemeData(
 
 ThemeData darkMode = ThemeData(
   brightness: Brightness.dark,
-  colorScheme: ColorScheme.dark(
-    background: Colors.grey.shade200,
+  colorScheme: const ColorScheme.dark(
+    background: Colors.black12,
     primary: Colors.black,
     secondary: Colors.green,
     tertiary: Colors.orange,
+    onSurface: Colors.white,
   ),
-  iconTheme: const IconThemeData(
-    color: Colors.black,
-  ),
-  navigationBarTheme: NavigationBarThemeData(),
+  navigationBarTheme:
+      NavigationBarThemeData(backgroundColor: Colors.grey.shade200),
   appBarTheme: const AppBarTheme(
       actionsIconTheme: IconThemeData(
         color: Colors.white,

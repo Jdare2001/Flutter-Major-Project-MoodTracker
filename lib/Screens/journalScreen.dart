@@ -13,6 +13,7 @@ class _JournalScreenState extends State<JournalScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: getTopAppBar("Journal", context),
       body: const Text("Journal"),
     );
