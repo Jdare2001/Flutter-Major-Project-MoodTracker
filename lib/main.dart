@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
           title: 'Mood Tracker',
           theme: lightMode,
           darkTheme: darkMode,
+          themeMode: ThemeMode.system,
           debugShowCheckedModeBanner: false,
           home: const TopLevelScreen(),
           routes: {
