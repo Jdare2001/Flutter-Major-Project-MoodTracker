@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodtracker/utilities/habitTile.dart';
 import 'package:moodtracker/utilities/topAppBar.dart';
 
 class HabitsScreen extends StatefulWidget {
@@ -14,7 +15,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: getTopAppBar("Habits", context),
-      body: const Text('Habits'),
+      body: HabitTile(),
     );
   }
 }
