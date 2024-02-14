@@ -10,12 +10,27 @@ class HabitsScreen extends StatefulWidget {
 }
 
 class _HabitsScreenState extends State<HabitsScreen> {
+  bool isHabitcompleted = false;
+  onChecked(bool? value) {
+    setState(() {
+      isHabitcompleted = value!;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: getTopAppBar("Habits", context),
-      body: HabitTile(),
+      body: ListView(
+        children: [
+          HabitTileWidget(
+            habitName: "Go For a run",
+            completed: isHabitcompleted,
+            onChecked: (value) => onChecked(value),
+          ),
+        ],
+      ),
     );
   }
 }

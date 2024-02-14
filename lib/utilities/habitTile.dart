@@ -1,32 +1,37 @@
 import 'package:flutter/material.dart';
 
-class HabitTile extends StatelessWidget {
-  const HabitTile({super.key});
+class HabitTileWidget extends StatelessWidget {
+  final habitName;
+  final bool completed;
+  final Function(bool?)? onChecked;
+  const HabitTileWidget(
+      {super.key,
+      required this.habitName,
+      required this.completed,
+      required this.onChecked});
 
   @override
   Widget build(BuildContext context) {
-    bool? value = false;
     return Padding(
       padding: const EdgeInsets.all(15),
       child: Container(
-        decoration: BoxDecoration(color: Theme.of(context).colorScheme.primary),
+        decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.primary,
+            borderRadius: BorderRadius.circular(8)),
         padding: EdgeInsets.all(20),
         child: Row(
           children: [
             Checkbox(
-                value: value,
-                onChanged: (theValue) {
-                  value = theValue;
-                }),
+              value: completed,
+              onChanged: onChecked,
+            ),
             Text(
-              "Go For a walk",
-              style: TextStyle(fontSize: 20),
+              habitName,
+              style: const TextStyle(fontSize: 20),
             ),
           ],
         ),
       ),
     );
   }
-
-  void _onClick() {}
 }
