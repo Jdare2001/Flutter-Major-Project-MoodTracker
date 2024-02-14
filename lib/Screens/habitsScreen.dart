@@ -22,6 +22,14 @@ class _HabitsScreenState extends State<HabitsScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: getTopAppBar("Habits", context),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        child: Icon(
+          Icons.add,
+          color: Theme.of(context).colorScheme.onSurface,
+        ),
+      ),
       body: ListView(
         children: [
           HabitTileWidget(
