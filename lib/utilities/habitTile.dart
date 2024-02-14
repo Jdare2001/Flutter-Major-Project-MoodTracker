@@ -18,16 +18,25 @@ class HabitTileWidget extends StatelessWidget {
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.tertiary,
             borderRadius: BorderRadius.circular(8)),
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Row(
           children: [
             Checkbox(
               value: completed,
               onChanged: onChecked,
             ),
-            Text(
-              habitName,
-              style: const TextStyle(fontSize: 20),
+            Expanded(
+              child: Text(
+                habitName,
+                style: const TextStyle(fontSize: 20),
+              ),
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.more_horiz,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+              onPressed: () {},
             ),
           ],
         ),
