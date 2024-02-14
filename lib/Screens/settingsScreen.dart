@@ -36,7 +36,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onChanged: (isOn) {
                   isOn
                       ? _toggleTheme(ThemeMode.dark)
-                      : _toggleTheme(ThemeMode.dark);
+                      : _toggleTheme(ThemeMode.light);
                 },
               )
             ],
