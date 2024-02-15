@@ -17,6 +17,7 @@ ThemeData lightMode = ThemeData(
       actionsIconTheme: IconThemeData(
         color: Colors.black,
       ),
+      iconTheme: IconThemeData(color: Colors.black),
       titleTextStyle: TextStyle(color: Colors.black, fontSize: 30)),
 );
 

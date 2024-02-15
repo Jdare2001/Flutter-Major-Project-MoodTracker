@@ -21,7 +21,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     bool isDarkTheme = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      appBar: getTopAppBar('Settings', context),
+      appBar: AppBar(
+        leading: BackButton(
+          color: Theme.of(context).colorScheme.onSurface,
+        ),
+        title: const Text("Settings"),
+      ),
       body: Center(
           child: Column(
         children: [
