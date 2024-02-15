@@ -17,6 +17,43 @@ class _HabitsScreenState extends State<HabitsScreen> {
     });
   }
 
+<<<<<<< Updated upstream
+=======
+  void cancelDialog() {
+    Navigator.of(context).pop();
+  }
+
+  void editHabit(int index) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return editHabitAlertDialog(
+            title: "Edit Habit",
+            hint: "habitname",
+            cancel: cancelDialog,
+          );
+        });
+  }
+
+  List todaysHabits = [
+    ["Stretch", false],
+    ["Drink 2L Water", false],
+    ["Read A book", false]
+  ];
+  void createNewHabit() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AddHabitAlertDialog(
+          title: "Add A Habit",
+          hint: "Habit Name",
+          cancel: cancelDialog,
+        );
+      },
+    );
+  }
+
+>>>>>>> Stashed changes
   @override
   Widget build(BuildContext context) {
     return Scaffold(
