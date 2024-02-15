@@ -6,6 +6,7 @@ class HabitTileWidget extends StatelessWidget {
   final bool completed;
   final Function(bool?)? onChecked;
   final Function(BuildContext)? editHabit;
+
   const HabitTileWidget({
     super.key,
     required this.habitName,
@@ -27,7 +28,7 @@ class HabitTileWidget extends StatelessWidget {
                 onPressed: editHabit,
                 icon: Icons.more_horiz,
                 borderRadius: BorderRadius.circular(8),
-                backgroundColor: Theme.of(context).colorScheme.primary,
+                backgroundColor: Theme.of(context).colorScheme.onSurfaceVariant,
               )
             ],
           ),

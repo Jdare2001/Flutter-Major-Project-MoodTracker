@@ -18,11 +18,19 @@ class _HabitsScreenState extends State<HabitsScreen> {
     });
   }
 
+  void cancelDialog() {
+    Navigator.pop(context);
+  }
+
   void editHabit(int index) {
     showDialog(
         context: context,
         builder: (context) {
-          return editHabitAlertDialog(title: "Edit Habit", hint: "habitname");
+          return editHabitAlertDialog(
+            title: "Edit Habit",
+            hint: "habitname",
+            Cancel: cancelDialog,
+          );
         });
   }
 
@@ -38,6 +46,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
         return AddHabitAlertDialog(
           title: "Add A Habit",
           hint: "Habit Name",
+          Cancel: cancelDialog,
         );
       },
     );

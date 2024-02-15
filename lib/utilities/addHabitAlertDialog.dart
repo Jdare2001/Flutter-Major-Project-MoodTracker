@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class AddHabitAlertDialog extends StatelessWidget {
   final String title;
   final String hint;
+  final Function() Cancel;
 
   const AddHabitAlertDialog({
     super.key,
     required this.title,
     required this.hint,
+    required this.Cancel,
   });
 
   @override
@@ -29,12 +31,7 @@ class AddHabitAlertDialog extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-              onPressed: () {},
-              child:
-                  const Text("delete", style: TextStyle(color: Colors.white)),
-            ),
-            ElevatedButton(
-              onPressed: () {},
+              onPressed: Cancel,
               child:
                   const Text("Cancel", style: TextStyle(color: Colors.white)),
             ),
