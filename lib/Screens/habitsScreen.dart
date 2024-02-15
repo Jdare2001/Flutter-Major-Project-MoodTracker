@@ -12,6 +12,8 @@ class HabitsScreen extends StatefulWidget {
 }
 
 class _HabitsScreenState extends State<HabitsScreen> {
+  final _NewHabitNameControler = TextEditingController();
+
   _onChecked(bool? value, index) {
     setState(() {
       todaysHabits[index][1] = value!;
@@ -19,7 +21,8 @@ class _HabitsScreenState extends State<HabitsScreen> {
   }
 
   void cancelDialog() {
-    Navigator.pop(context);
+    _NewHabitNameControler.clear();
+    Navigator.of(context).pop();
   }
 
   void editHabit(int index) {
@@ -29,9 +32,18 @@ class _HabitsScreenState extends State<HabitsScreen> {
           return editHabitAlertDialog(
             title: "Edit Habit",
             hint: "habitname",
-            Cancel: cancelDialog,
+            cancel: cancelDialog,
           );
         });
+  }
+
+  void saveHabit() {
+    setState(() {
+      todaysHabits.add([_NewHabitNameControler.text, false]);
+    });
+
+    _NewHabitNameControler.clear();
+    Navigator.of(context).pop();
   }
 
   List todaysHabits = [
@@ -47,7 +59,9 @@ class _HabitsScreenState extends State<HabitsScreen> {
         return AddHabitAlertDialog(
           title: "Add A Habit",
           hint: "Habit Name",
-          Cancel: cancelDialog,
+          cancel: cancelDialog,
+          onSave: saveHabit,
+          controler: _NewHabitNameControler,
         );
       },
     );
