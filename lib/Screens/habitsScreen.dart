@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:moodtracker/utilities/addHabitAlertDialog.dart';
+import 'package:moodtracker/utilities/editHabitAlertDialog.dart';
 import 'package:moodtracker/utilities/habitTile.dart';
 import 'package:moodtracker/utilities/topAppBar.dart';
 
@@ -16,13 +18,30 @@ class _HabitsScreenState extends State<HabitsScreen> {
     });
   }
 
-  void editHabit(int index) {}
+  void editHabit(int index) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return editHabitAlertDialog(title: "Edit Habit", hint: "habitname");
+        });
+  }
 
   List todaysHabits = [
     ["Stretch", false],
     ["Drink 2L Water", false],
     ["Read A book", false]
   ];
+  void createNewHabit() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AddHabitAlertDialog(
+          title: "Add A Habit",
+          hint: "Habit Name",
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +49,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: getTopAppBar("Habits", context),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: createNewHabit,
           backgroundColor: Theme.of(context).colorScheme.primary,
           child: Icon(
             Icons.add,
