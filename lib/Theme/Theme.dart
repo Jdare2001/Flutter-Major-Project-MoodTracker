@@ -8,6 +8,7 @@ ThemeData lightMode = ThemeData(
     secondary: Colors.deepPurple,
     tertiary: Colors.lightBlue.shade200,
     onSurface: Colors.black,
+    onSurfaceVariant: Colors.grey,
   ),
   iconTheme: const IconThemeData(
     color: Colors.black,
@@ -27,6 +28,7 @@ ThemeData darkMode = ThemeData(
     secondary: Colors.green,
     tertiary: Colors.orange,
     onSurface: Colors.white,
+    onSurfaceVariant: Colors.grey,
   ),
   navigationBarTheme:
       NavigationBarThemeData(backgroundColor: Colors.grey.shade200),
