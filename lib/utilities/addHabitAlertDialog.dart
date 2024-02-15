@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AddHabitAlertDialog extends StatelessWidget {
-  final controler;
+  final TextEditingController controller;
   final String title;
   final String hint;
   final VoidCallback cancel;
@@ -12,7 +12,7 @@ class AddHabitAlertDialog extends StatelessWidget {
     required this.title,
     required this.hint,
     required this.cancel,
-    required this.controler,
+    required this.controller,
     required this.onSave,
   });
 
@@ -24,7 +24,7 @@ class AddHabitAlertDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           TextField(
-            controller: controler,
+            controller: controller,
             decoration: InputDecoration(labelText: hint),
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [

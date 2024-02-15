@@ -31,10 +31,30 @@ class _HabitsScreenState extends State<HabitsScreen> {
         builder: (context) {
           return editHabitAlertDialog(
             title: "Edit Habit",
-            hint: "habitname",
+            hint: todaysHabits[index][0],
             cancel: cancelDialog,
+            controller: _NewHabitNameControler,
+            onSave: () => updateHabit(index),
+            onDelete: () => deleteHabit(index),
           );
         });
+  }
+
+  void deleteHabit(int index) {
+    setState(() {
+      todaysHabits.removeAt(index);
+    });
+
+    _NewHabitNameControler.clear();
+    Navigator.of(context).pop();
+  }
+
+  void updateHabit(int index) {
+    setState(() {
+      todaysHabits[index][0] = _NewHabitNameControler.text;
+      _NewHabitNameControler.clear();
+      Navigator.of(context).pop();
+    });
   }
 
   void saveHabit() {
@@ -61,7 +81,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
           hint: "Habit Name",
           cancel: cancelDialog,
           onSave: saveHabit,
-          controler: _NewHabitNameControler,
+          controller: _NewHabitNameControler,
         );
       },
     );
