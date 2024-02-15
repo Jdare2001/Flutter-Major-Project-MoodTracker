@@ -10,11 +10,13 @@ class HabitsScreen extends StatefulWidget {
 }
 
 class _HabitsScreenState extends State<HabitsScreen> {
-  onChecked(bool? value, index) {
+  _onChecked(bool? value, index) {
     setState(() {
       todaysHabits[index][1] = value!;
     });
   }
+
+  void editHabit(int index) {}
 
   List todaysHabits = [
     ["Stretch", false],
@@ -39,9 +41,11 @@ class _HabitsScreenState extends State<HabitsScreen> {
           itemCount: todaysHabits.length,
           itemBuilder: (context, index) {
             return HabitTileWidget(
-                habitName: todaysHabits[index][0],
-                completed: todaysHabits[index][1],
-                onChecked: (value) => onChecked(value, index));
+              habitName: todaysHabits[index][0],
+              completed: todaysHabits[index][1],
+              onChecked: (value) => _onChecked(value, index),
+              editHabit: (context) => editHabit(index),
+            );
           },
         ));
   }
