@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class editHabitAlertDialog extends StatelessWidget {
   final String title;
   final String hint;
-  final Function() Cancel;
+  final VoidCallback cancel;
   const editHabitAlertDialog({
     super.key,
     required this.title,
     required this.hint,
-    required this.Cancel,
+    required this.cancel,
   });
 
   @override
@@ -35,7 +35,7 @@ class editHabitAlertDialog extends StatelessWidget {
                   const Text("Delete", style: TextStyle(color: Colors.white)),
             ),
             ElevatedButton(
-              onPressed: Cancel,
+              onPressed: cancel,
               child:
                   const Text("Cancel", style: TextStyle(color: Colors.white)),
             ),
