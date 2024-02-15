@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:moodtracker/utilities/addHabitAlertDialog.dart';
-import 'package:moodtracker/utilities/editHabitAlertDialog.dart';
 import 'package:moodtracker/utilities/habitTile.dart';
 import 'package:moodtracker/utilities/topAppBar.dart';
 
@@ -12,14 +10,17 @@ class HabitsScreen extends StatefulWidget {
 }
 
 class _HabitsScreenState extends State<HabitsScreen> {
-  _onChecked(bool? value, index) {
+  bool isHabitcompleted = false;
+  onChecked(bool? value) {
     setState(() {
-      todaysHabits[index][1] = value!;
+      isHabitcompleted = value!;
     });
   }
 
+<<<<<<< Updated upstream
+=======
   void cancelDialog() {
-    Navigator.pop(context);
+    Navigator.of(context).pop();
   }
 
   void editHabit(int index) {
@@ -29,7 +30,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
           return editHabitAlertDialog(
             title: "Edit Habit",
             hint: "habitname",
-            Cancel: cancelDialog,
+            cancel: cancelDialog,
           );
         });
   }
@@ -46,35 +47,27 @@ class _HabitsScreenState extends State<HabitsScreen> {
         return AddHabitAlertDialog(
           title: "Add A Habit",
           hint: "Habit Name",
-          Cancel: cancelDialog,
+          cancel: cancelDialog,
         );
       },
     );
   }
 
+>>>>>>> Stashed changes
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
-        appBar: getTopAppBar("Habits", context),
-        floatingActionButton: FloatingActionButton(
-          onPressed: createNewHabit,
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          child: Icon(
-            Icons.add,
-            color: Theme.of(context).colorScheme.onSurface,
+      backgroundColor: Theme.of(context).colorScheme.background,
+      appBar: getTopAppBar("Habits", context),
+      body: ListView(
+        children: [
+          HabitTileWidget(
+            habitName: "Go For a run",
+            completed: isHabitcompleted,
+            onChecked: (value) => onChecked(value),
           ),
-        ),
-        body: ListView.builder(
-          itemCount: todaysHabits.length,
-          itemBuilder: (context, index) {
-            return HabitTileWidget(
-              habitName: todaysHabits[index][0],
-              completed: todaysHabits[index][1],
-              onChecked: (value) => _onChecked(value, index),
-              editHabit: (context) => editHabit(index),
-            );
-          },
-        ));
+        ],
+      ),
+    );
   }
 }
