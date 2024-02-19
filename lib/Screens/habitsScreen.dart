@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moodtracker/utilities/addHabitAlertDialog.dart';
-import 'package:moodtracker/utilities/editHabitAlertDialog.dart';
-import 'package:moodtracker/utilities/habitTile.dart';
+import 'package:moodtracker/utilities/HabitComponents/addHabitAlertDialog.dart';
+import 'package:moodtracker/utilities/HabitComponents/editHabitAlertDialog.dart';
+import 'package:moodtracker/utilities/HabitComponents/goodOrBadHabitCheckBox.dart';
+import 'package:moodtracker/utilities/HabitComponents/habitTile.dart';
 import 'package:moodtracker/utilities/topAppBar.dart';
 
 class HabitsScreen extends StatefulWidget {
@@ -59,7 +60,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
 
   void saveHabit() {
     setState(() {
-      todaysHabits.add([_NewHabitNameControler.text, false]);
+      todaysHabits.add([_NewHabitNameControler.text, false, true]);
     });
 
     _NewHabitNameControler.clear();
@@ -67,9 +68,9 @@ class _HabitsScreenState extends State<HabitsScreen> {
   }
 
   List todaysHabits = [
-    ["Stretch", false],
-    ["Drink 2L Water", false],
-    ["Read A book", false]
+    ["Stretch", false, true],
+    ["Drink 2L Water", false, true],
+    ["Read A book", false, true]
   ];
   //create new habit
   void createNewHabit() {
@@ -82,9 +83,18 @@ class _HabitsScreenState extends State<HabitsScreen> {
           cancel: cancelDialog,
           onSave: saveHabit,
           controller: _NewHabitNameControler,
+          getGoodorBad: getHabitGoodBadCheckbox(true),
         );
       },
     );
+  }
+
+  String positiveOrNegative(int index) {
+    if (todaysHabits[index][2]) {
+      return "Positive";
+    } else {
+      return "Negative";
+    }
   }
 //habit screen widget
 
@@ -105,11 +115,11 @@ class _HabitsScreenState extends State<HabitsScreen> {
           itemCount: todaysHabits.length,
           itemBuilder: (context, index) {
             return HabitTileWidget(
-              habitName: todaysHabits[index][0],
-              completed: todaysHabits[index][1],
-              onChecked: (value) => _onChecked(value, index),
-              editHabit: (context) => editHabit(index),
-            );
+                habitName: todaysHabits[index][0],
+                completed: todaysHabits[index][1],
+                onChecked: (value) => _onChecked(value, index),
+                editHabit: (context) => editHabit(index),
+                positive: positiveOrNegative(index));
           },
         ));
   }

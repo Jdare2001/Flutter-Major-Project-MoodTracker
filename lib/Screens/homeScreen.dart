@@ -44,22 +44,28 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(
                     width: 15,
                   ),
-                  const Column(
+                  Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 55,
                       ),
                       Text(
                         'You have completed',
-                        style: TextStyle(fontSize: 18, color: Colors.black),
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: Theme.of(context).colorScheme.onSurface),
                       ),
                       Text(
                         '70%',
-                        style: TextStyle(fontSize: 25, color: Colors.black),
+                        style: TextStyle(
+                            fontSize: 25,
+                            color: Theme.of(context).colorScheme.onSurface),
                       ),
                       Text(
                         'of your habits for the day',
-                        style: TextStyle(fontSize: 18, color: Colors.black),
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: Theme.of(context).colorScheme.onSurface),
                       ),
                     ],
                   )
@@ -76,9 +82,11 @@ class _HomePageState extends State<HomePage> {
               style: ElevatedButton.styleFrom(
                   backgroundColor: Theme.of(context).colorScheme.tertiary,
                   padding: const EdgeInsets.all(20)),
-              child: const Text(
+              child: Text(
                 "Do Daily Check In",
-                style: TextStyle(color: Colors.black, fontSize: 20),
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
+                    fontSize: 20),
               ),
             )
           ],

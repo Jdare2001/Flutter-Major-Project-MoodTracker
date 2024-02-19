@@ -6,6 +6,7 @@ class AddHabitAlertDialog extends StatelessWidget {
   final String hint;
   final VoidCallback cancel;
   final VoidCallback onSave;
+  final Widget getGoodorBad;
 
   const AddHabitAlertDialog({
     super.key,
@@ -14,6 +15,7 @@ class AddHabitAlertDialog extends StatelessWidget {
     required this.cancel,
     required this.controller,
     required this.onSave,
+    required this.getGoodorBad,
   });
 
   @override
@@ -27,6 +29,8 @@ class AddHabitAlertDialog extends StatelessWidget {
             controller: controller,
             decoration: InputDecoration(labelText: hint),
           ),
+          const Text("Good Habit?"),
+          getGoodorBad,
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             ElevatedButton(
               onPressed: onSave,
