@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AddHabitAlertDialog extends StatelessWidget {
+class AddHabitAlertDialog extends StatefulWidget {
   final TextEditingController controller;
   final String title;
   final String hint;
@@ -17,30 +17,34 @@ class AddHabitAlertDialog extends StatelessWidget {
     required this.onSave,
     required this.getGoodorBad,
   });
+  @override
+  State<AddHabitAlertDialog> createState() => _AddHabitAlertDialogScreenState();
+}
 
+class _AddHabitAlertDialogScreenState extends State<AddHabitAlertDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(title),
+      title: Text(widget.title),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           TextField(
-            controller: controller,
-            decoration: InputDecoration(labelText: hint),
+            controller: widget.controller,
+            decoration: InputDecoration(labelText: widget.hint),
           ),
           const Text("Good Habit?"),
-          getGoodorBad,
+          widget.getGoodorBad,
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             ElevatedButton(
-              onPressed: onSave,
+              onPressed: widget.onSave,
               child: const Text(
                 "Save",
                 style: TextStyle(color: Colors.white),
               ),
             ),
             ElevatedButton(
-              onPressed: cancel,
+              onPressed: widget.cancel,
               child:
                   const Text("Cancel", style: TextStyle(color: Colors.white)),
             ),
