@@ -83,7 +83,6 @@ class _HabitsScreenState extends State<HabitsScreen> {
           cancel: cancelDialog,
           onSave: saveHabit,
           controller: _NewHabitNameControler,
-          getGoodorBad: getHabitGoodBadCheckbox(true),
         );
       },
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moodtracker/utilities/HabitComponents/goodOrBadHabitCheckBox.dart';
 
 class AddHabitAlertDialog extends StatefulWidget {
   final TextEditingController controller;
@@ -6,7 +7,6 @@ class AddHabitAlertDialog extends StatefulWidget {
   final String hint;
   final VoidCallback cancel;
   final VoidCallback onSave;
-  final Widget getGoodorBad;
 
   const AddHabitAlertDialog({
     super.key,
@@ -15,13 +15,19 @@ class AddHabitAlertDialog extends StatefulWidget {
     required this.cancel,
     required this.controller,
     required this.onSave,
-    required this.getGoodorBad,
   });
   @override
   State<AddHabitAlertDialog> createState() => _AddHabitAlertDialogScreenState();
 }
 
 class _AddHabitAlertDialogScreenState extends State<AddHabitAlertDialog> {
+  bool value = true;
+  onChanged(newValue) {
+    setState(() {
+      value = newValue;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -33,8 +39,11 @@ class _AddHabitAlertDialogScreenState extends State<AddHabitAlertDialog> {
             controller: widget.controller,
             decoration: InputDecoration(labelText: widget.hint),
           ),
+          const Padding(
+            padding: EdgeInsets.all(8),
+          ),
           const Text("Good Habit?"),
-          widget.getGoodorBad,
+          Switch(value: value, onChanged: onChanged),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             ElevatedButton(
               onPressed: widget.onSave,

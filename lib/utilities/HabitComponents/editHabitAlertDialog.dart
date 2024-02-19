@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class editHabitAlertDialog extends StatelessWidget {
+class editHabitAlertDialog extends StatefulWidget {
   final String title;
   final String hint;
   final VoidCallback cancel;
@@ -16,33 +16,36 @@ class editHabitAlertDialog extends StatelessWidget {
     required this.onDelete,
     required this.onSave,
   });
+  State<editHabitAlertDialog> createState() => _editHabitAlertDialogState();
+}
 
+class _editHabitAlertDialogState extends State<editHabitAlertDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(title),
+      title: Text(widget.title),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           TextField(
-            controller: controller,
-            decoration: InputDecoration(labelText: hint),
+            controller: widget.controller,
+            decoration: InputDecoration(labelText: widget.hint),
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             ElevatedButton(
-              onPressed: onSave,
+              onPressed: widget.onSave,
               child: const Text(
                 "Save",
                 style: TextStyle(color: Colors.white),
               ),
             ),
             ElevatedButton(
-              onPressed: onDelete,
+              onPressed: widget.onDelete,
               child:
                   const Text("Delete", style: TextStyle(color: Colors.white)),
             ),
             ElevatedButton(
-              onPressed: cancel,
+              onPressed: widget.cancel,
               child:
                   const Text("Cancel", style: TextStyle(color: Colors.white)),
             ),
