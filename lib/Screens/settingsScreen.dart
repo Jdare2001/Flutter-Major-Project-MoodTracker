@@ -13,7 +13,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   void _toggleTheme(ThemeMode themeMode) {
     setState(() {
-      _themeMode = themeMode;
+      themeMode = themeMode;
     });
   }
 
