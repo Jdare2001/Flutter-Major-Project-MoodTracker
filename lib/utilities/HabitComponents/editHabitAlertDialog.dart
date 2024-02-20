@@ -34,9 +34,10 @@ class _editHabitAlertDialogState extends State<editHabitAlertDialog> {
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             ElevatedButton(
               onPressed: widget.onSave,
-              child: const Text(
+              child: Text(
                 "Save",
-                style: TextStyle(color: Colors.white),
+                style:
+                    TextStyle(color: Theme.of(context).colorScheme.onSurface),
               ),
             ),
             ElevatedButton(
