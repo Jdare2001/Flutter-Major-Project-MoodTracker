@@ -47,15 +47,17 @@ class _AddHabitAlertDialogScreenState extends State<AddHabitAlertDialog> {
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             ElevatedButton(
               onPressed: widget.onSave,
-              child: const Text(
+              child: Text(
                 "Save",
-                style: TextStyle(color: Colors.white),
+                style:
+                    TextStyle(color: Theme.of(context).colorScheme.onSurface),
               ),
             ),
             ElevatedButton(
               onPressed: widget.cancel,
-              child:
-                  const Text("Cancel", style: TextStyle(color: Colors.white)),
+              child: Text("Cancel",
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface)),
             ),
           ])
         ],

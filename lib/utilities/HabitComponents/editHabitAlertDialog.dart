@@ -41,13 +41,15 @@ class _editHabitAlertDialogState extends State<editHabitAlertDialog> {
             ),
             ElevatedButton(
               onPressed: widget.onDelete,
-              child:
-                  const Text("Delete", style: TextStyle(color: Colors.white)),
+              child: Text("Delete",
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface)),
             ),
             ElevatedButton(
               onPressed: widget.cancel,
-              child:
-                  const Text("Cancel", style: TextStyle(color: Colors.white)),
+              child: Text("Cancel",
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface)),
             ),
           ])
         ],
