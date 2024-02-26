@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(
-              height: 35.h,
+              height: 25.h,
             ),
             ElevatedButton(
               onPressed: () {
