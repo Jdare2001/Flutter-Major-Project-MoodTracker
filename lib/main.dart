@@ -18,7 +18,7 @@ void main() async {
     ],
   );
   await Hive.initFlutter();
-  await Hive.openBox("moodTrackerDb");
+  await Hive.openBox("habitBox");
 
   runApp(const MyApp());
 }

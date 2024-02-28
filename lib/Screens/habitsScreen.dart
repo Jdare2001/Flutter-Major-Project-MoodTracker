@@ -23,7 +23,9 @@ class _HabitsScreenState extends State<HabitsScreen> {
   void initState() {
     if (_myHabitBox.get("CURRENT_HABIT_LIST") == null) {
       db.createDefaultData();
-    } else {}
+    } else {
+      db.loadHabits();
+    }
     super.initState();
   }
 

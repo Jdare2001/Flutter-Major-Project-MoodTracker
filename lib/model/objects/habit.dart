@@ -3,7 +3,7 @@ class Habit {
   bool isChecked;
   DateTime dateChecked;
   bool positiveOrNeg;
-  String habitType;
+  String? habitType;
   DateTime? habitEnd;
 
   Habit({
@@ -11,7 +11,7 @@ class Habit {
     required this.isChecked,
     required this.dateChecked,
     required this.positiveOrNeg,
-    required this.habitType,
+    this.habitType,
     this.habitEnd,
   });
 }
