@@ -37,6 +37,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
       db.todaysHabits[index].isChecked = value!;
     });
     db.updateHabitBox();
+    db.updateSettingsBox();
   }
 
   void cancelDialog() {
@@ -76,6 +77,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
       _NewHabitNameControler.clear();
       Navigator.of(context).pop();
       db.updateHabitBox();
+      db.updateSettingsBox();
     });
   }
 
@@ -91,6 +93,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
     _NewHabitNameControler.clear();
     Navigator.of(context).pop();
     db.updateHabitBox();
+    db.updateSettingsBox();
   }
 
   //create new habit
