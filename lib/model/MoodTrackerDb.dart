@@ -5,10 +5,10 @@ import 'package:moodtracker/utilities/DateTimeConverter.dart';
 final _myHabitBox = Hive.box("habitBox");
 
 class MoodtrackerDb {
-  List<Habit> todaysHabits = [];
+  List todaysHabits = [];
 
   void createDefaultData() {
-    todaysHabits = [
+    List todaysHabits = [
       Habit(
         name: "Run",
         isChecked: false,
@@ -31,7 +31,7 @@ class MoodtrackerDb {
         todaysHabits[i].isChecked = false;
       }
     } else {
-      todaysHabits = _myHabitBox.get(todaysHabits);
+      todaysHabits = _myHabitBox.get("currentHabitList");
     }
   }
 

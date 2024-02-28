@@ -63,17 +63,19 @@ class _HabitsScreenState extends State<HabitsScreen> {
     setState(() {
       db.todaysHabits.removeAt(index);
     });
-    db.updateHabitBox();
+
     _NewHabitNameControler.clear();
     Navigator.of(context).pop();
+    db.updateHabitBox();
   }
 
   void updateHabit(int index) {
     setState(() {
       db.todaysHabits[index].name = _NewHabitNameControler.text;
-      db.updateHabitBox();
+
       _NewHabitNameControler.clear();
       Navigator.of(context).pop();
+      db.updateHabitBox();
     });
   }
 
@@ -85,9 +87,10 @@ class _HabitsScreenState extends State<HabitsScreen> {
           dateChecked: todaysDateFormatedString(),
           positiveOrNeg: true));
     });
-    db.updateHabitBox();
+
     _NewHabitNameControler.clear();
     Navigator.of(context).pop();
+    db.updateHabitBox();
   }
 
   //create new habit
@@ -136,7 +139,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
                 completed: db.todaysHabits[index].isChecked,
                 onChecked: (value) => _onChecked(value, index),
                 editHabit: (context) => editHabit(index),
-                positive: positiveOrNegative(index));
+                positive: positiveOrNegative(1));
           },
         ));
   }

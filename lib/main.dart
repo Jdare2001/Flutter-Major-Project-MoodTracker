@@ -6,19 +6,21 @@ import 'package:moodtracker/Screens/habitsScreen.dart';
 import 'package:moodtracker/Screens/homeScreen.dart';
 import 'package:moodtracker/Screens/journalScreen.dart';
 import 'package:moodtracker/Screens/settingsScreen.dart';
+import 'package:moodtracker/model/objects/habit.dart';
 import 'package:moodtracker/utilities/topScreen.dart';
 import 'package:moodtracker/Theme/Theme.dart';
 import 'package:sizer/sizer.dart';
 
 void main() async {
+  Hive.registerAdapter(HabitAdapter());
+  await Hive.initFlutter();
+  await Hive.openBox("habitBox");
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
     [
       DeviceOrientation.portraitUp,
     ],
   );
-  await Hive.initFlutter();
-  await Hive.openBox("habitBox");
 
   runApp(const MyApp());
 }
