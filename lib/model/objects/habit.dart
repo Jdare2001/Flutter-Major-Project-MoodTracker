@@ -1,10 +1,10 @@
 class Habit {
   String name;
   bool isChecked;
-  DateTime dateChecked;
+  String dateChecked;
   bool positiveOrNeg;
   String? habitType;
-  DateTime? habitEnd;
+  String? habitEnd;
 
   Habit({
     required this.name,

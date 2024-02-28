@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:moodtracker/model/MoodTrackerDb.dart';
+import 'package:moodtracker/model/objects/habit.dart';
+import 'package:moodtracker/utilities/DateTimeConverter.dart';
 import 'package:moodtracker/utilities/HabitComponents/addHabitAlertDialog.dart';
 import 'package:moodtracker/utilities/HabitComponents/editHabitAlertDialog.dart';
 import 'package:moodtracker/utilities/HabitComponents/goodOrBadHabitCheckBox.dart';
@@ -21,18 +23,20 @@ class _HabitsScreenState extends State<HabitsScreen> {
 
   @override
   void initState() {
-    if (_myHabitBox.get("CURRENT_HABIT_LIST") == null) {
+    if (_myHabitBox.get("currentHabitList") == null) {
       db.createDefaultData();
     } else {
-      db.loadHabits();
+      db.loadHabitData();
     }
+    db.updateHabitBox();
     super.initState();
   }
 
   _onChecked(bool? value, index) {
     setState(() {
-      todaysHabits[index][1] = value!;
+      db.todaysHabits[index].isChecked = value!;
     });
+    db.updateHabitBox();
   }
 
   void cancelDialog() {
@@ -46,7 +50,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
         builder: (context) {
           return editHabitAlertDialog(
             title: "Edit Habit",
-            hint: todaysHabits[index][0],
+            hint: db.todaysHabits[index].name,
             cancel: cancelDialog,
             controller: _NewHabitNameControler,
             onSave: () => updateHabit(index),
@@ -57,16 +61,17 @@ class _HabitsScreenState extends State<HabitsScreen> {
 
   void deleteHabit(int index) {
     setState(() {
-      todaysHabits.removeAt(index);
+      db.todaysHabits.removeAt(index);
     });
-
+    db.updateHabitBox();
     _NewHabitNameControler.clear();
     Navigator.of(context).pop();
   }
 
   void updateHabit(int index) {
     setState(() {
-      todaysHabits[index][0] = _NewHabitNameControler.text;
+      db.todaysHabits[index].name = _NewHabitNameControler.text;
+      db.updateHabitBox();
       _NewHabitNameControler.clear();
       Navigator.of(context).pop();
     });
@@ -74,18 +79,17 @@ class _HabitsScreenState extends State<HabitsScreen> {
 
   void saveHabit() {
     setState(() {
-      todaysHabits.add([_NewHabitNameControler.text, false, true]);
+      db.todaysHabits.add(Habit(
+          name: _NewHabitNameControler.text,
+          isChecked: false,
+          dateChecked: todaysDateFormatedString(),
+          positiveOrNeg: true));
     });
-
+    db.updateHabitBox();
     _NewHabitNameControler.clear();
     Navigator.of(context).pop();
   }
 
-  List todaysHabits = [
-    ["Stretch", false, true],
-    ["Drink 2L Water", false, true],
-    ["Read A book", false, true]
-  ];
   //create new habit
   void createNewHabit() {
     showDialog(
@@ -103,7 +107,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
   }
 
   String positiveOrNegative(int index) {
-    if (todaysHabits[index][2]) {
+    if (db.todaysHabits[index].positiveOrNeg) {
       return "Positive";
     } else {
       return "Negative";
@@ -125,11 +129,11 @@ class _HabitsScreenState extends State<HabitsScreen> {
           ),
         ),
         body: ListView.builder(
-          itemCount: todaysHabits.length,
+          itemCount: db.todaysHabits.length,
           itemBuilder: (context, index) {
             return HabitTileWidget(
-                habitName: todaysHabits[index][0],
-                completed: todaysHabits[index][1],
+                habitName: db.todaysHabits[index].name,
+                completed: db.todaysHabits[index].isChecked,
                 onChecked: (value) => _onChecked(value, index),
                 editHabit: (context) => editHabit(index),
                 positive: positiveOrNegative(index));
