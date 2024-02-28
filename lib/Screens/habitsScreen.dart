@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:moodtracker/model/MoodTrackerDb.dart';
 import 'package:moodtracker/utilities/HabitComponents/addHabitAlertDialog.dart';
 import 'package:moodtracker/utilities/HabitComponents/editHabitAlertDialog.dart';
 import 'package:moodtracker/utilities/HabitComponents/goodOrBadHabitCheckBox.dart';
@@ -13,7 +15,17 @@ class HabitsScreen extends StatefulWidget {
 }
 
 class _HabitsScreenState extends State<HabitsScreen> {
+  MoodtrackerDb db = MoodtrackerDb();
+  final _myHabitBox = Hive.box("habitBox");
   final _NewHabitNameControler = TextEditingController();
+
+  @override
+  void initState() {
+    if (_myHabitBox.get("CURRENT_HABIT_LIST") == null) {
+      db.createDefaultData();
+    } else {}
+    super.initState();
+  }
 
   _onChecked(bool? value, index) {
     setState(() {

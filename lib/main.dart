@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:moodtracker/Screens/dailyCheckInScreen.dart';
 import 'package:moodtracker/Screens/habitsScreen.dart';
 import 'package:moodtracker/Screens/homeScreen.dart';
@@ -9,13 +10,16 @@ import 'package:moodtracker/utilities/topScreen.dart';
 import 'package:moodtracker/Theme/Theme.dart';
 import 'package:sizer/sizer.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
     [
       DeviceOrientation.portraitUp,
     ],
   );
+  await Hive.initFlutter();
+  await Hive.openBox("moodTrackerDb");
+
   runApp(const MyApp());
 }
 
