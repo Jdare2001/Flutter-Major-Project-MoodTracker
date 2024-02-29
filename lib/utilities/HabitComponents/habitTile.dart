@@ -50,9 +50,14 @@ class HabitTileWidget extends StatelessWidget {
                     children: [
                       Text(
                         habitName,
-                        style: const TextStyle(fontSize: 20),
+                        style: const TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.w600),
                       ),
-                      Text("$positive Habit")
+                      Text(
+                        "$positive Habit",
+                        style: const TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.w600),
+                      )
                     ],
                   ),
                 ),

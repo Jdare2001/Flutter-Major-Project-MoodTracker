@@ -58,19 +58,22 @@ class _HomePageState extends State<HomePage> {
                         'You have completed',
                         style: TextStyle(
                             fontSize: 18,
-                            color: Theme.of(context).colorScheme.onSurface),
+                            color: Theme.of(context).colorScheme.onSurface,
+                            fontWeight: FontWeight.w600),
                       ),
                       Text(
                         '${(percentCalculatedDouble() * 100).toInt()}%',
                         style: TextStyle(
                             fontSize: 25,
-                            color: Theme.of(context).colorScheme.onSurface),
+                            color: Theme.of(context).colorScheme.onSurface,
+                            fontWeight: FontWeight.w600),
                       ),
                       Text(
                         'of your habits for the day',
                         style: TextStyle(
                             fontSize: 18,
-                            color: Theme.of(context).colorScheme.onSurface),
+                            color: Theme.of(context).colorScheme.onSurface,
+                            fontWeight: FontWeight.w600),
                       ),
                     ],
                   )
@@ -91,7 +94,8 @@ class _HomePageState extends State<HomePage> {
                 "Do Daily Check In",
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.onSurface,
-                    fontSize: 20),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600),
               ),
             )
           ],
