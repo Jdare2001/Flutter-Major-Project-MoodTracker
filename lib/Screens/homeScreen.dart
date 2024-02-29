@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:moodtracker/Theme/Theme.dart';
 import 'package:moodtracker/model/MoodTrackerDb.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:moodtracker/utilities/topAppBar.dart';

@@ -1,6 +1,8 @@
 import 'dart:ffi';
 
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:moodtracker/Theme/Theme.dart';
 import 'package:moodtracker/model/objects/habit.dart';
 import 'package:moodtracker/utilities/DateTimeConverter.dart';
 
@@ -8,6 +10,7 @@ final _myHabitBox = Hive.box("habitBox");
 final _settingsBox = Hive.box("settingsBox");
 
 class MoodtrackerDb {
+  String currentTheme = 'lightMode';
   List todaysHabits = [];
   double percentCalculated = 0.0;
 

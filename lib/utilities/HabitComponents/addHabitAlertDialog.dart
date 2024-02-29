@@ -31,7 +31,12 @@ class _AddHabitAlertDialogScreenState extends State<AddHabitAlertDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(widget.title),
+      title: Text(
+        widget.title,
+        style: TextStyle(
+            color: Theme.of(context).colorScheme.onSurface,
+            fontWeight: FontWeight.w600),
+      ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -42,26 +47,63 @@ class _AddHabitAlertDialogScreenState extends State<AddHabitAlertDialog> {
           const Padding(
             padding: EdgeInsets.all(8),
           ),
-          const Text("Good Habit?"),
-          Switch(value: value, onChanged: onChanged),
+          Row(
+            children: [
+              Text(
+                "Good Habit?",
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
+                    fontWeight: FontWeight.w600),
+              ),
+              Checkbox(value: value, onChanged: onChanged),
+            ],
+          ),
+          Text(
+            'Type of Habit',
+            style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface,
+                fontWeight: FontWeight.w600),
+          ),
+          Row(
+            children: [
+              ToggleButtons(
+                isSelected: isSelected(),
+                children: habitTypes,
+              )
+            ],
+          ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             ElevatedButton(
               onPressed: widget.onSave,
               child: Text(
                 "Save",
-                style:
-                    TextStyle(color: Theme.of(context).colorScheme.onSurface),
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
+                    fontWeight: FontWeight.w600),
               ),
             ),
             ElevatedButton(
               onPressed: widget.cancel,
               child: Text("Cancel",
                   style: TextStyle(
-                      color: Theme.of(context).colorScheme.onSurface)),
+                      color: Theme.of(context).colorScheme.onSurface,
+                      fontWeight: FontWeight.w600)),
             ),
           ])
         ],
       ),
     );
   }
+
+  List<Widget> habitTypes = [
+    Text('Exercise'),
+    Text('Mental health'),
+    Text('Diet'),
+    Text('Social'),
+    Text('Finance'),
+    Text('Mindfullness'),
+    Text('Self Care'),
+    Text('Learning'),
+  ];
+  isSelected() {}
 }
