@@ -29,6 +29,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   MyApp({super.key});
   final _mySettingsBox = Hive.box('settingsBox');
+  ThemeMode themeMode = ThemeMode.system;
   @override
   Widget build(BuildContext context) {
     return Sizer(

@@ -65,12 +65,7 @@ class _AddHabitAlertDialogScreenState extends State<AddHabitAlertDialog> {
                 fontWeight: FontWeight.w600),
           ),
           Row(
-            children: [
-              ToggleButtons(
-                isSelected: isSelected(),
-                children: habitTypes,
-              )
-            ],
+            children: [],
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             ElevatedButton(
