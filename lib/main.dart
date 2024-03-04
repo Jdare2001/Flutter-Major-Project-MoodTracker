@@ -23,13 +23,12 @@ void main() async {
     ],
   );
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-  final _mySettingsBox = Hive.box('settingsBox');
-  ThemeMode themeMode = ThemeMode.system;
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Sizer(

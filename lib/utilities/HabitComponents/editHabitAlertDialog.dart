@@ -56,6 +56,5 @@ class _editHabitAlertDialogState extends State<editHabitAlertDialog> {
         ],
       ),
     );
-    ;
   }
 }

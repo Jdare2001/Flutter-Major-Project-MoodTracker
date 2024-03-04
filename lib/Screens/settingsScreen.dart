@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:moodtracker/main.dart';
-import 'package:moodtracker/utilities/topAppBar.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -10,11 +8,9 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  ThemeMode _themeMode = MyApp().themeMode;
-
   void _toggleTheme(ThemeMode themeMode) {
     setState(() {
-      MyApp().themeMode = themeMode;
+      themeMode = themeMode;
     });
   }
 
@@ -47,7 +43,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               )
             ],
           ),
-          Divider()
+          const Divider()
         ],
       )),
     );

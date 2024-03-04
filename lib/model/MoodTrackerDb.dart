@@ -1,8 +1,4 @@
-import 'dart:ffi';
-
-import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:moodtracker/Theme/Theme.dart';
 import 'package:moodtracker/model/objects/habit.dart';
 import 'package:moodtracker/utilities/DateTimeConverter.dart';
 
@@ -54,17 +50,22 @@ class MoodtrackerDb {
   }
 
   double calculatepercentHabits() {
+    int amountPos = 0;
     int amountCompleted = 0;
     for (int i = 0; i < todaysHabits.length; i++) {
-      if (todaysHabits[i].isChecked == true) {
+      if (todaysHabits[i].isChecked == true && todaysHabits[i].positiveOrNeg) {
         amountCompleted++;
       }
+      if (todaysHabits[i].positiveOrNeg == true) {
+        amountPos++;
+      }
     }
+
     double percentage;
     if (todaysHabits.isEmpty) {
       percentage = 1;
     } else {
-      percentage = amountCompleted / todaysHabits.length;
+      percentage = amountCompleted / amountPos;
     }
     return percentage;
   }

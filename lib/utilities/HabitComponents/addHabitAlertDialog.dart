@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:moodtracker/utilities/HabitComponents/goodOrBadHabitCheckBox.dart';
+import 'package:moodtracker/model/MoodTrackerDb.dart';
 
 class AddHabitAlertDialog extends StatefulWidget {
   final TextEditingController controller;
   final String title;
   final String hint;
   final VoidCallback cancel;
-  final VoidCallback onSave;
+  final Function(dynamic) onSave;
 
   const AddHabitAlertDialog({
     super.key,
@@ -16,18 +16,15 @@ class AddHabitAlertDialog extends StatefulWidget {
     required this.controller,
     required this.onSave,
   });
+
   @override
-  State<AddHabitAlertDialog> createState() => _AddHabitAlertDialogScreenState();
+  State<AddHabitAlertDialog> createState() => _AddHabitAlertDialogState();
 }
 
-class _AddHabitAlertDialogScreenState extends State<AddHabitAlertDialog> {
-  bool value = true;
-  onChanged(newValue) {
-    setState(() {
-      value = newValue;
-    });
-  }
+class _AddHabitAlertDialogState extends State<AddHabitAlertDialog> {
+  MoodtrackerDb db = MoodtrackerDb();
 
+  bool checkValue = true;
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -55,7 +52,9 @@ class _AddHabitAlertDialogScreenState extends State<AddHabitAlertDialog> {
                     color: Theme.of(context).colorScheme.onSurface,
                     fontWeight: FontWeight.w600),
               ),
-              Checkbox(value: value, onChanged: onChanged),
+              Checkbox(
+                  value: checkValue,
+                  onChanged: (newValue) => onChanged(newValue)),
             ],
           ),
           Text(
@@ -69,7 +68,7 @@ class _AddHabitAlertDialogScreenState extends State<AddHabitAlertDialog> {
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             ElevatedButton(
-              onPressed: widget.onSave,
+              onPressed: () => widget.onSave(checkValue),
               child: Text(
                 "Save",
                 style: TextStyle(
@@ -90,15 +89,21 @@ class _AddHabitAlertDialogScreenState extends State<AddHabitAlertDialog> {
     );
   }
 
+  onChanged(newValue) {
+    setState(() {
+      checkValue = newValue;
+    });
+  }
+
   List<Widget> habitTypes = [
-    Text('Exercise'),
-    Text('Mental health'),
-    Text('Diet'),
-    Text('Social'),
-    Text('Finance'),
-    Text('Mindfullness'),
-    Text('Self Care'),
-    Text('Learning'),
+    const Text('Exercise'),
+    const Text('Mental health'),
+    const Text('Diet'),
+    const Text('Social'),
+    const Text('Finance'),
+    const Text('Mindfullness'),
+    const Text('Self Care'),
+    const Text('Learning'),
   ];
   isSelected() {}
 }

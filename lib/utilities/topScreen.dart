@@ -1,4 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:moodtracker/Screens/habitsScreen.dart';
 import 'package:moodtracker/Screens/homeScreen.dart';
@@ -35,15 +36,15 @@ class _TopLevelScreenState extends State<TopLevelScreen> {
         index: 1,
         items: [
           Icon(
-            Icons.bar_chart_outlined,
+            CupertinoIcons.chart_bar,
             color: Theme.of(context).colorScheme.onSurface,
           ),
           Icon(
-            Icons.home,
+            CupertinoIcons.home,
             color: Theme.of(context).colorScheme.onSurface,
           ),
           Icon(
-            Icons.check_box,
+            CupertinoIcons.check_mark_circled,
             color: Theme.of(context).colorScheme.onSurface,
           )
         ],

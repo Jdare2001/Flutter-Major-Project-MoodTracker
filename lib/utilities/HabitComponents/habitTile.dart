@@ -42,6 +42,8 @@ class HabitTileWidget extends StatelessWidget {
             child: Row(
               children: [
                 Checkbox(
+                  materialTapTargetSize: MaterialTapTargetSize.padded,
+                  shape: const CircleBorder(),
                   value: completed,
                   onChanged: onChecked,
                 ),

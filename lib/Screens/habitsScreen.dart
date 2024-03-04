@@ -5,7 +5,6 @@ import 'package:moodtracker/model/objects/habit.dart';
 import 'package:moodtracker/utilities/DateTimeConverter.dart';
 import 'package:moodtracker/utilities/HabitComponents/addHabitAlertDialog.dart';
 import 'package:moodtracker/utilities/HabitComponents/editHabitAlertDialog.dart';
-import 'package:moodtracker/utilities/HabitComponents/goodOrBadHabitCheckBox.dart';
 import 'package:moodtracker/utilities/HabitComponents/habitTile.dart';
 import 'package:moodtracker/utilities/topAppBar.dart';
 
@@ -19,7 +18,7 @@ class HabitsScreen extends StatefulWidget {
 class _HabitsScreenState extends State<HabitsScreen> {
   MoodtrackerDb db = MoodtrackerDb();
   final _myHabitBox = Hive.box("habitBox");
-  final _NewHabitNameControler = TextEditingController();
+  final _newHabitNameControler = TextEditingController();
 
   @override
   void initState() {
@@ -41,7 +40,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
   }
 
   void cancelDialog() {
-    _NewHabitNameControler.clear();
+    _newHabitNameControler.clear();
     Navigator.of(context).pop();
   }
 
@@ -53,7 +52,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
             title: "Edit Habit",
             hint: db.todaysHabits[index].name,
             cancel: cancelDialog,
-            controller: _NewHabitNameControler,
+            controller: _newHabitNameControler,
             onSave: () => updateHabit(index),
             onDelete: () => deleteHabit(index),
           );
@@ -65,35 +64,20 @@ class _HabitsScreenState extends State<HabitsScreen> {
       db.todaysHabits.removeAt(index);
     });
 
-    _NewHabitNameControler.clear();
+    _newHabitNameControler.clear();
     Navigator.of(context).pop();
     db.updateHabitBox();
   }
 
   void updateHabit(int index) {
     setState(() {
-      db.todaysHabits[index].name = _NewHabitNameControler.text;
+      db.todaysHabits[index].name = _newHabitNameControler.text;
 
-      _NewHabitNameControler.clear();
+      _newHabitNameControler.clear();
       Navigator.of(context).pop();
       db.updateHabitBox();
       db.updateSettingsBox();
     });
-  }
-
-  void saveHabit() {
-    setState(() {
-      db.todaysHabits.add(Habit(
-          name: _NewHabitNameControler.text,
-          isChecked: false,
-          dateChecked: todaysDateFormatedString(),
-          positiveOrNeg: true));
-    });
-
-    _NewHabitNameControler.clear();
-    Navigator.of(context).pop();
-    db.updateHabitBox();
-    db.updateSettingsBox();
   }
 
   //create new habit
@@ -105,11 +89,27 @@ class _HabitsScreenState extends State<HabitsScreen> {
           title: "Add A Habit",
           hint: "Habit Name",
           cancel: cancelDialog,
+          controller: _newHabitNameControler,
           onSave: saveHabit,
-          controller: _NewHabitNameControler,
         );
       },
     );
+  }
+
+  saveHabit(dynamic checkvalue) {
+    setState(
+      () {
+        db.todaysHabits.add(Habit(
+            name: _newHabitNameControler.text,
+            isChecked: false,
+            dateChecked: todaysDateFormatedString(),
+            positiveOrNeg: checkvalue));
+      },
+    );
+    Navigator.of(context).pop();
+    db.updateHabitBox();
+    db.updateSettingsBox();
+    _newHabitNameControler.clear();
   }
 
   String positiveOrNegative(int index) {
@@ -119,6 +119,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
       return "Negative";
     }
   }
+
 //habit screen widget
 
   @override
@@ -138,11 +139,12 @@ class _HabitsScreenState extends State<HabitsScreen> {
           itemCount: db.todaysHabits.length,
           itemBuilder: (context, index) {
             return HabitTileWidget(
-                habitName: db.todaysHabits[index].name,
-                completed: db.todaysHabits[index].isChecked,
-                onChecked: (value) => _onChecked(value, index),
-                editHabit: (context) => editHabit(index),
-                positive: positiveOrNegative(1));
+              habitName: db.todaysHabits[index].name,
+              completed: db.todaysHabits[index].isChecked,
+              onChecked: (value) => _onChecked(value, index),
+              editHabit: (context) => editHabit(index),
+              positive: positiveOrNegative(index),
+            );
           },
         ));
   }

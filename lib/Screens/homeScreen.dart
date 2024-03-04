@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:moodtracker/Theme/Theme.dart';
-import 'package:moodtracker/model/MoodTrackerDb.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:moodtracker/utilities/topAppBar.dart';
 import 'package:sizer/sizer.dart';
@@ -14,7 +12,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  MoodtrackerDb db = MoodtrackerDb();
   final _mySettingsBox = Hive.box("settingsBox");
 
   onChecked() {}
@@ -109,6 +106,8 @@ class _HomePageState extends State<HomePage> {
     double percent = 0.0;
     if (_mySettingsBox.get("todaysPercent") != null) {
       percent = _mySettingsBox.get("todaysPercent");
+    } else {
+      percent = 0;
     }
     return percent;
   }
