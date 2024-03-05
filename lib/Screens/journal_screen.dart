@@ -15,7 +15,16 @@ class _JournalScreenState extends State<JournalScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: getTopAppBar("Journal", context),
-      body: const Text("Journal"),
+      body: const Column(
+        children: [
+          SizedBox(height: 5),
+          Text(
+            "Last 7 days at a glance",
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+          ),
+          Divider(),
+        ],
+      ),
     );
   }
 }

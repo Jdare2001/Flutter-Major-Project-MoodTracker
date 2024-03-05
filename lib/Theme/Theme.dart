@@ -29,10 +29,10 @@ ThemeData lightMode = ThemeData(
 ThemeData darkMode = ThemeData(
   brightness: Brightness.dark,
   colorScheme: const ColorScheme.dark(
-    background: Colors.black12,
+    background: Color.fromARGB(255, 29, 29, 29),
     primary: Colors.black,
     secondary: Colors.green,
-    tertiary: Colors.orange,
+    tertiary: Color.fromARGB(255, 53, 53, 53),
     onSurface: Colors.white,
     onSurfaceVariant: Colors.grey,
   ),
