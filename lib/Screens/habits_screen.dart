@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:moodtracker/model/MoodTrackerDb.dart';
+import 'package:moodtracker/model/mood_tracker_db.dart';
 import 'package:moodtracker/model/objects/habit.dart';
-import 'package:moodtracker/utilities/DateTimeConverter.dart';
-import 'package:moodtracker/utilities/HabitComponents/addHabitAlertDialog.dart';
-import 'package:moodtracker/utilities/HabitComponents/editHabitAlertDialog.dart';
-import 'package:moodtracker/utilities/HabitComponents/habitTile.dart';
-import 'package:moodtracker/utilities/topAppBar.dart';
+import 'package:moodtracker/utilities/date_time_converter.dart';
+import 'package:moodtracker/utilities/HabitComponents/add_habit_alert_dialog.dart';
+import 'package:moodtracker/utilities/HabitComponents/edit_habit_alert_dialog.dart';
+import 'package:moodtracker/utilities/HabitComponents/habit_tile.dart';
+import 'package:moodtracker/utilities/top_app_bar.dart';
 
 class HabitsScreen extends StatefulWidget {
   const HabitsScreen({super.key});
@@ -48,7 +48,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
     showDialog(
         context: context,
         builder: (context) {
-          return editHabitAlertDialog(
+          return EditHabitAlertDialog(
             title: "Edit Habit",
             hint: db.todaysHabits[index].name,
             cancel: cancelDialog,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class HabitTileWidget extends StatelessWidget {
-  final habitName;
+  final String habitName;
   final bool completed;
   final Function(bool?)? onChecked;
   final Function(BuildContext)? editHabit;
@@ -23,7 +23,7 @@ class HabitTileWidget extends StatelessWidget {
         padding: const EdgeInsets.all(15),
         child: Slidable(
           endActionPane: ActionPane(
-            motion: StretchMotion(),
+            motion: const StretchMotion(),
             children: [
               //edit habit button
               SlidableAction(

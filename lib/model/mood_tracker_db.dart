@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:moodtracker/model/objects/habit.dart';
-import 'package:moodtracker/utilities/DateTimeConverter.dart';
+import 'package:moodtracker/utilities/date_time_converter.dart';
 
 final _myHabitBox = Hive.box("habitBox");
 final _settingsBox = Hive.box("settingsBox");
@@ -63,7 +63,7 @@ class MoodtrackerDb {
 
     double percentage;
     if (todaysHabits.isEmpty) {
-      percentage = 1;
+      percentage = 0;
     } else {
       percentage = amountCompleted / amountPos;
     }

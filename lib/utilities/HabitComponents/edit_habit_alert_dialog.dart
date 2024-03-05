@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class editHabitAlertDialog extends StatefulWidget {
+class EditHabitAlertDialog extends StatefulWidget {
   final String title;
   final String hint;
   final VoidCallback cancel;
   final VoidCallback onDelete;
   final VoidCallback onSave;
   final TextEditingController controller;
-  const editHabitAlertDialog({
+  const EditHabitAlertDialog({
     super.key,
     required this.title,
     required this.hint,
@@ -16,10 +16,11 @@ class editHabitAlertDialog extends StatefulWidget {
     required this.onDelete,
     required this.onSave,
   });
-  State<editHabitAlertDialog> createState() => _editHabitAlertDialogState();
+  @override
+  State<EditHabitAlertDialog> createState() => _EditHabitAlertDialogState();
 }
 
-class _editHabitAlertDialogState extends State<editHabitAlertDialog> {
+class _EditHabitAlertDialogState extends State<EditHabitAlertDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(

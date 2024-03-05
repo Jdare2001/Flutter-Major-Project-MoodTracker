@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:moodtracker/Screens/dailyCheckInScreen.dart';
-import 'package:moodtracker/Screens/habitsScreen.dart';
-import 'package:moodtracker/Screens/homeScreen.dart';
-import 'package:moodtracker/Screens/journalScreen.dart';
-import 'package:moodtracker/Screens/settingsScreen.dart';
+import 'package:moodtracker/Screens/daily_check_in_screen.dart';
+import 'package:moodtracker/Screens/habits_screen.dart';
+import 'package:moodtracker/Screens/home_screen.dart';
+import 'package:moodtracker/Screens/journal_screen.dart';
+import 'package:moodtracker/Screens/settings_screen.dart';
 import 'package:moodtracker/model/objects/habit.dart';
-import 'package:moodtracker/utilities/topScreen.dart';
-import 'package:moodtracker/Theme/Theme.dart';
+import 'package:moodtracker/utilities/top_screen.dart';
+import 'package:moodtracker/Theme/theme.dart';
 import 'package:sizer/sizer.dart';
 
 void main() async {

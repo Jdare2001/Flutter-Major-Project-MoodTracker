@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moodtracker/model/MoodTrackerDb.dart';
+import 'package:moodtracker/model/mood_tracker_db.dart';
 
 class AddHabitAlertDialog extends StatefulWidget {
   final TextEditingController controller;
@@ -63,7 +63,7 @@ class _AddHabitAlertDialogState extends State<AddHabitAlertDialog> {
                 color: Theme.of(context).colorScheme.onSurface,
                 fontWeight: FontWeight.w600),
           ),
-          Row(
+          const Row(
             children: [],
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [

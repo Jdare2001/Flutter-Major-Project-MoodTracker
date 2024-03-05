@@ -1,9 +1,9 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:moodtracker/Screens/habitsScreen.dart';
-import 'package:moodtracker/Screens/homeScreen.dart';
-import 'package:moodtracker/Screens/journalScreen.dart';
+import 'package:moodtracker/Screens/habits_screen.dart';
+import 'package:moodtracker/Screens/home_screen.dart';
+import 'package:moodtracker/Screens/journal_screen.dart';
 
 class TopLevelScreen extends StatefulWidget {
   const TopLevelScreen({super.key});

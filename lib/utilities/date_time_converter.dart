@@ -1,15 +1,15 @@
 String todaysDateFormatedString() {
-  var DTObject = DateTime.now();
+  var dtObject = DateTime.now();
 
-  String day = DTObject.day.toString();
+  String day = dtObject.day.toString();
   if (day.length == 1) {
     day = "0$day";
   }
-  String month = DTObject.month.toString();
+  String month = dtObject.month.toString();
   if (month.length == 1) {
     month = "0$month";
   }
-  String year = DTObject.year.toString();
+  String year = dtObject.year.toString();
 
   String finalFormat = year + month + day;
   return finalFormat;

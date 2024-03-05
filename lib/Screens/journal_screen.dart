@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:moodtracker/utilities/topAppBar.dart';
+import 'package:moodtracker/utilities/top_app_bar.dart';
 
 class JournalScreen extends StatefulWidget {
   const JournalScreen({super.key});
