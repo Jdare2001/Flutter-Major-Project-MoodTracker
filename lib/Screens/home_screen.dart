@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -24,7 +26,58 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             Container(
-              height: 7.h,
+              height: 5.h,
+            ),
+            Container(
+              height: 100,
+              width: 380,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  color: Theme.of(context).colorScheme.tertiary),
+              child: Row(children: [
+                const SizedBox(width: 40),
+                const Icon(
+                  CupertinoIcons.person_alt_circle,
+                  size: 60,
+                ),
+                const SizedBox(width: 20),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 17),
+                    SizedBox(
+                      width: 200,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "User",
+                            style: const TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.w600),
+                          ),
+                          Text(
+                            "Beginner - 300 exp to level up ",
+                            style: const TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w600),
+                          ),
+                          const SizedBox(height: 7),
+                          LinearProgressIndicator(
+                            backgroundColor:
+                                Theme.of(context).colorScheme.background,
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                                Theme.of(context).colorScheme.secondary),
+                            value: 0.7,
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                )
+              ]),
+            ),
+            Container(
+              height: 5.h,
             ),
             Container(
               height: 200,
@@ -78,8 +131,8 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 25.h,
+            Container(
+              height: 10.h,
             ),
             ElevatedButton(
               onPressed: () {
