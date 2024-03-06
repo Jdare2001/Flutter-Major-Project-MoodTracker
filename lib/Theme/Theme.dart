@@ -21,7 +21,7 @@ ThemeData lightMode = ThemeData(
       iconTheme: IconThemeData(color: Colors.black),
       titleTextStyle: TextStyle(
           color: Colors.black,
-          fontSize: 30,
+          fontSize: 20,
           fontFamily: 'Nunito',
           fontWeight: FontWeight.w600)),
 );
@@ -45,7 +45,7 @@ ThemeData darkMode = ThemeData(
       ),
       titleTextStyle: TextStyle(
           color: Colors.white,
-          fontSize: 30,
+          fontSize: 20,
           fontFamily: 'Nunito',
           fontWeight: FontWeight.w600)),
 );
