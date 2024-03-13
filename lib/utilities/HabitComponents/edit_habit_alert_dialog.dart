@@ -37,21 +37,24 @@ class _EditHabitAlertDialogState extends State<EditHabitAlertDialog> {
               onPressed: widget.onSave,
               child: Text(
                 "Save",
-                style:
-                    TextStyle(color: Theme.of(context).colorScheme.onSurface),
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
+                    fontWeight: FontWeight.w600),
               ),
             ),
             ElevatedButton(
               onPressed: widget.onDelete,
               child: Text("Delete",
                   style: TextStyle(
-                      color: Theme.of(context).colorScheme.onSurface)),
+                      color: Theme.of(context).colorScheme.onSurface,
+                      fontWeight: FontWeight.w600)),
             ),
             ElevatedButton(
               onPressed: widget.cancel,
               child: Text("Cancel",
                   style: TextStyle(
-                      color: Theme.of(context).colorScheme.onSurface)),
+                      color: Theme.of(context).colorScheme.onSurface,
+                      fontWeight: FontWeight.w600)),
             ),
           ])
         ],

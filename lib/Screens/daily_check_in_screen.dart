@@ -14,6 +14,7 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: getTopAppBar('Daily Check In', context),
       body: Center(
         child: Column(
@@ -31,14 +32,17 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
               child: Column(
                 children: [
                   const SizedBox(height: 30),
-                  const Text(
+                  Text(
                     'How Happy have you been today?',
-                    style: TextStyle(fontSize: 20, color: Colors.black),
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Theme.of(context).colorScheme.onSurface),
                   ),
                   const SizedBox(height: 30),
                   Text(getMessage(rating),
-                      style:
-                          const TextStyle(fontSize: 20, color: Colors.black)),
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Theme.of(context).colorScheme.onSurface)),
                   Slider(
                     activeColor: Theme.of(context).colorScheme.secondary,
                     inactiveColor: Theme.of(context).colorScheme.background,
@@ -64,9 +68,11 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
               style: ElevatedButton.styleFrom(
                   backgroundColor: Theme.of(context).colorScheme.tertiary,
                   padding: const EdgeInsets.all(20)),
-              child: const Text(
+              child: Text(
                 "Submit",
-                style: TextStyle(color: Colors.black, fontSize: 20),
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
+                    fontSize: 20),
               ),
             )
           ],
