@@ -10,13 +10,16 @@ import 'package:moodtracker/model/objects/habit.dart';
 import 'package:moodtracker/utilities/top_screen.dart';
 import 'package:moodtracker/Theme/theme.dart';
 import 'package:sizer/sizer.dart';
+import 'package:moodtracker/widget_path.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() async {
+Future<void> main() async {
   Hive.registerAdapter(HabitAdapter());
   await Hive.initFlutter();
   await Hive.openBox("habitBox");
   await Hive.openBox("settingsBox");
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   SystemChrome.setPreferredOrientations(
     [
       DeviceOrientation.portraitUp,
@@ -39,7 +42,7 @@ class MyApp extends StatelessWidget {
           darkTheme: darkMode,
           themeMode: ThemeMode.system,
           debugShowCheckedModeBanner: false,
-          home: const TopLevelScreen(),
+          home: const WidgetPath(),
           routes: {
             '/Home': (context) => const HomePage(),
             '/Settings': (context) => const SettingsScreen(),
