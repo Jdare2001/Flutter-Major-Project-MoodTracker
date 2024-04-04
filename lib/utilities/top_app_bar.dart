@@ -2,10 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void signOutUser() {
-  FirebaseAuth.instance.signOut();
-}
-
 getTopAppBar(String title, context) {
   return AppBar(
     title: Text(title),

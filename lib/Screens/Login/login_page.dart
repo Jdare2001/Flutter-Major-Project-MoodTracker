@@ -4,26 +4,53 @@ import 'package:flutter/material.dart';
 import 'package:moodtracker/utilities/login_textfield.dart';
 import 'package:moodtracker/utilities/sign_in_button.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   LoginPage({super.key});
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
 
-  Future<void> signInUser() async {
-    try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        print('No user found for that email.');
-      } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
-      }
-    }
-  }
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final emailController = TextEditingController();
+
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    void userNotFoundDialog() {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return const AlertDialog(
+              title: Text("Incorrect Email"),
+            );
+          });
+    }
+
+    void wrongPasswordDialog() {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return const AlertDialog(
+              title: Text("Incorrect Password"),
+            );
+          });
+    }
+
+    Future<void> signInUser() async {
+      try {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+            email: emailController.text, password: passwordController.text);
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'user-not-found') {
+          userNotFoundDialog();
+        } else if (e.code == 'wrong-password') {
+          wrongPasswordDialog();
+        }
+      }
+    }
+
     return Scaffold(
         backgroundColor: Colors.grey.shade200,
         body: SafeArea(
