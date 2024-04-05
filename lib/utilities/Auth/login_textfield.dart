@@ -16,19 +16,22 @@ class LoginTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30.0),
       child: TextField(
+        style: const TextStyle(color: Colors.black),
         obscureText: obscureText,
         controller: controller,
         decoration: InputDecoration(
-            fillColor: Colors.white,
-            filled: true,
-            enabledBorder: OutlineInputBorder(
-              borderSide:
-                  BorderSide(color: Theme.of(context).colorScheme.onSurface),
-            ),
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.blueGrey),
-            ),
-            hintText: hintText),
+          fillColor: Colors.white,
+          filled: true,
+          enabledBorder: OutlineInputBorder(
+            borderSide:
+                BorderSide(color: Theme.of(context).colorScheme.onSurface),
+          ),
+          focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.blueGrey),
+          ),
+          hintText: hintText,
+          hintStyle: const TextStyle(color: Colors.black),
+        ),
       ),
     );
   }

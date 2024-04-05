@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:moodtracker/utilities/login_textfield.dart';
+import 'package:moodtracker/utilities/Auth/login_textfield.dart';
 import 'package:moodtracker/utilities/Auth/sign_in_button.dart';
 
 class LoginPage extends StatefulWidget {
@@ -21,10 +21,13 @@ class _LoginPageState extends State<LoginPage> {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
     } on FirebaseAuthException catch (e) {
+      print(e.code);
       if (e.code == 'INVALID_LOGIN_CREDENTIALS') {
         userNotFoundDialog();
       } else if (e.code == 'wrong-password') {
         wrongPasswordDialog();
+      } else if (e.code == 'invalid-credential') {
+        userNotFoundDialog();
       }
     }
   }
@@ -60,12 +63,12 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   //Welcome text
-                  Text(
+                  const Text(
                     "Welcome Back!",
                     style: TextStyle(
                       fontSize: 35,
                       fontWeight: FontWeight.w600,
-                      color: Theme.of(context).colorScheme.onSurface,
+                      color: Colors.black,
                     ),
                   ),
                   const SizedBox(height: 50),
@@ -90,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   //sign up
                   const SizedBox(height: 25),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
@@ -98,13 +101,13 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
-                          color: Theme.of(context).colorScheme.onSurface,
+                          color: Colors.black,
                         ),
                       ),
-                      const SizedBox(
+                      SizedBox(
                         width: 4,
                       ),
-                      const Text(
+                      Text(
                         "Sign up Now!",
                         style: TextStyle(
                           fontSize: 20,
