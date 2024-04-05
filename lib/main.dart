@@ -9,7 +9,6 @@ import 'package:moodtracker/Screens/home_screen.dart';
 import 'package:moodtracker/Screens/journal_screen.dart';
 import 'package:moodtracker/Screens/settings_screen.dart';
 import 'package:moodtracker/model/objects/habit.dart';
-import 'package:moodtracker/utilities/top_screen.dart';
 import 'package:moodtracker/Theme/theme.dart';
 import 'package:sizer/sizer.dart';
 import 'package:firebase_core/firebase_core.dart';
