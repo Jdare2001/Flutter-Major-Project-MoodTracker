@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:moodtracker/Screens/Login/login_page.dart';
 import 'package:moodtracker/utilities/Auth/login_textfield.dart';
 import 'package:moodtracker/utilities/Auth/sign_in_button.dart';
 
@@ -18,7 +16,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final passwordController = TextEditingController();
 
   final passwordConfController = TextEditingController();
-  Future<void> signInUser() async {
+  Future<void> signUpUser() async {
     if (passwordController.text == passwordConfController.text) {
       try {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -101,7 +99,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     height: 10,
                   ),
                   LoginButton(
-                    onTap: signInUser,
+                    onTap: signUpUser,
                     buttonName: 'Sign Up',
                   ),
                   //sign up
@@ -121,7 +119,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         width: 4,
                       ),
                       GestureDetector(
-                        onTap: () => Navigator.pushNamed(context, '/LoginPage'),
+                        onTap: () =>
+                            Navigator.pushNamed(context, '/LoginScreen'),
                         child: const Text(
                           "Sign In Now!",
                           style: TextStyle(

@@ -123,12 +123,16 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                   const SizedBox(height: 25),
-                  const Text(
-                    "Forgot Password",
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.blue,
+                  GestureDetector(
+                    onTap: () =>
+                        Navigator.pushNamed(context, '/ForgotPasswordScreen'),
+                    child: const Text(
+                      "Forgot Password",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.blue,
+                      ),
                     ),
                   )
                 ],
