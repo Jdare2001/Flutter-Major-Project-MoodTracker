@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
             '/DailyCheckIn': (context) => const DailyCheckInScreen(),
             '/LoginScreen': (context) => const LoginPage(),
             '/AuthScreen': (context) => const AuthScreen(),
-            '/SignUpScreen': (context) => SignUpPage(),
+            '/SignUpScreen': (context) => const SignUpPage(),
             '/ForgotPasswordScreen': (context) => const ForgotPasswordPage(),
           },
         );
