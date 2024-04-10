@@ -94,10 +94,10 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   //sign up
                   const SizedBox(height: 25),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         "Not A Member?",
                         style: TextStyle(
                           fontSize: 20,
@@ -105,15 +105,19 @@ class _LoginPageState extends State<LoginPage> {
                           color: Colors.black,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 4,
                       ),
-                      Text(
-                        "Sign up Now!",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.blue,
+                      GestureDetector(
+                        onTap: () =>
+                            Navigator.pushNamed(context, '/SignUpScreen'),
+                        child: const Text(
+                          "Sign up Now!",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.blue,
+                          ),
                         ),
                       ),
                     ],
