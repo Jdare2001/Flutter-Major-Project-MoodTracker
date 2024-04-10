@@ -5,7 +5,7 @@ import 'package:moodtracker/utilities/Auth/login_textfield.dart';
 import 'package:moodtracker/utilities/Auth/sign_in_button.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({super.key});
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();

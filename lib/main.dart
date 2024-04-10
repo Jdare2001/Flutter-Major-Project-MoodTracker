@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
             '/JournalScreen': (context) => const JournalScreen(),
             '/HabitsScreen': (context) => const HabitsScreen(),
             '/DailyCheckIn': (context) => const DailyCheckInScreen(),
-            '/LoginScreen': (context) => LoginPage(),
+            '/LoginScreen': (context) => const LoginPage(),
             '/AuthScreen': (context) => const AuthScreen(),
             '/SignUpScreen': (context) => SignUpPage(),
             '/ForgotPasswordScreen': (context) => const ForgotPasswordPage(),

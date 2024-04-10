@@ -14,9 +14,9 @@ class AuthScreen extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return TopLevelScreen();
+            return const TopLevelScreen();
           } else {
-            return SignUpPage();
+            return LoginPage();
           }
         },
       ),
