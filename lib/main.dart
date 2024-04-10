@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:moodtracker/Screens/Login/auth_page.dart';
 import 'package:moodtracker/Screens/Login/login_page.dart';
+import 'package:moodtracker/Screens/Login/sign_up_page.dart';
 import 'package:moodtracker/Screens/daily_check_in_screen.dart';
 import 'package:moodtracker/Screens/habits_screen.dart';
 import 'package:moodtracker/Screens/home_screen.dart';
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
             '/DailyCheckIn': (context) => const DailyCheckInScreen(),
             '/LoginScreen': (context) => LoginPage(),
             '/AuthScreen': (context) => const AuthScreen(),
+            '/SignUpScreen': (context) => SignUpPage(),
           },
         );
       },
