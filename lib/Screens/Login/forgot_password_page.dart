@@ -18,7 +18,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         email: emailController.text,
       );
     } on FirebaseAuthException catch (e) {
+      print(e.code);
       if (e.code == 'missing-email') {
+        emailNotValidDialog();
+      } else if (e.code == 'invalid-email') {
         emailNotValidDialog();
       }
     }
@@ -29,7 +32,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         context: context,
         builder: (context) {
           return const AlertDialog(
-            title: Text("Invalid Email - No account under this email"),
+            title: Text(
+                "Invalid Email - There may be no account under this email"),
           );
         });
   }
