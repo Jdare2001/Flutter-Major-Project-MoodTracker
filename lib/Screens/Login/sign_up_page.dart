@@ -63,6 +63,14 @@ class _SignUpPageState extends State<SignUpPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Image.asset(
+                    'lib/Assets/LogonoBG.png',
+                    width: 100,
+                    height: 100,
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
                   //Welcome text
                   const Text(
                     "Sign Up!",
@@ -72,7 +80,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       color: Colors.black,
                     ),
                   ),
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 25),
                   //User field
                   LoginTextField(
                     controller: emailController,

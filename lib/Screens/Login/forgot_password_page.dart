@@ -73,6 +73,14 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Image.asset(
+                    'lib/Assets/LogonoBG.png',
+                    width: 100,
+                    height: 100,
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
                   //Welcome text
                   const Text(
                     "Send Reset Email",
@@ -90,7 +98,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     obscureText: false,
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 20,
                   ),
                   emailResetButton(
                     buttonName: 'Send Reset Email',

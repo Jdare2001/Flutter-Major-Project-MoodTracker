@@ -60,6 +60,14 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Image.asset(
+                    'lib/Assets/LogonoBG.png',
+                    width: 100,
+                    height: 100,
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
                   //Welcome text
                   const Text(
                     "Welcome Back!",
