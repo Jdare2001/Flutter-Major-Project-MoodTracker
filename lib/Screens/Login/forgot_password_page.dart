@@ -66,68 +66,68 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey.shade200,
-        body: SafeArea(
-          child: Center(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'lib/Assets/LogonoBG.png',
-                    width: 100,
-                    height: 100,
+      backgroundColor: Colors.grey.shade200,
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'lib/Assets/LogonoBG.png',
+                  width: 100,
+                  height: 100,
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                //Welcome text
+                const Text(
+                  "Send Reset Email",
+                  style: TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
                   ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  //Welcome text
-                  const Text(
-                    "Send Reset Email",
-                    style: TextStyle(
-                      fontSize: 35,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(height: 50),
-                  //User field
-                  LoginTextField(
-                    controller: emailController,
-                    hintText: "Email",
-                    obscureText: false,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  emailResetButton(
-                    buttonName: 'Send Reset Email',
-                    onTap: sendEmailReset,
-                  ),
-                  //sign up
-                  const SizedBox(height: 25),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        onTap: () =>
-                            Navigator.pushNamed(context, '/LoginScreen'),
-                        child: const Text(
-                          "Go Back",
-                          style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.blue,
-                          ),
+                ),
+                const SizedBox(height: 50),
+                //User field
+                LoginTextField(
+                  controller: emailController,
+                  hintText: "Email",
+                  obscureText: false,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                emailResetButton(
+                  buttonName: 'Send Reset Email',
+                  onTap: sendEmailReset,
+                ),
+                //sign up
+                const SizedBox(height: 25),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () => Navigator.pushNamed(context, '/LoginScreen'),
+                      child: const Text(
+                        "Go Back",
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.blue,
                         ),
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 25),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 25),
+              ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
