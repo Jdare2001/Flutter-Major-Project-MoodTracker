@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,15 +25,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -65,4 +56,34 @@ class DefaultFirebaseOptions {
     storageBucket: 'dissprojectdb.appspot.com',
     iosBundleId: 'jaydentest.moodtracker.2024',
   );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyByd2boZsamtvZ_Ql3ik2LKxa0WvQZqa5o',
+    appId: '1:625200669376:web:77453dbaac4a6449214325',
+    messagingSenderId: '625200669376',
+    projectId: 'dissprojectdb',
+    authDomain: 'dissprojectdb.firebaseapp.com',
+    storageBucket: 'dissprojectdb.appspot.com',
+    measurementId: 'G-ND7HYS2N02',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyCJGMRrbQ0s0mbHTik1OmJRBQ_5Aao1GGk',
+    appId: '1:625200669376:ios:0ba95eb2ffdbafbb214325',
+    messagingSenderId: '625200669376',
+    projectId: 'dissprojectdb',
+    storageBucket: 'dissprojectdb.appspot.com',
+    iosBundleId: 'com.example.moodtracker',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyByd2boZsamtvZ_Ql3ik2LKxa0WvQZqa5o',
+    appId: '1:625200669376:web:19c94e17e9f95c81214325',
+    messagingSenderId: '625200669376',
+    projectId: 'dissprojectdb',
+    authDomain: 'dissprojectdb.firebaseapp.com',
+    storageBucket: 'dissprojectdb.appspot.com',
+    measurementId: 'G-CF9TXQMRSK',
+  );
+
 }

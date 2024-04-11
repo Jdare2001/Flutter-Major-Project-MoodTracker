@@ -18,7 +18,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         email: emailController.text,
       );
     } on FirebaseAuthException catch (e) {
-      print(e.code);
       if (e.code == 'missing-email') {
         emailNotValidDialog();
       } else if (e.code == 'invalid-email') {

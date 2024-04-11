@@ -22,7 +22,6 @@ class _SignUpPageState extends State<SignUpPage> {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
             email: emailController.text, password: passwordController.text);
       } on FirebaseAuthException catch (e) {
-        print(e.code);
         if (e.code == 'invalid-email') {
           emailNotValidDialog();
         } else if (e.code == 'invalid-credential') {

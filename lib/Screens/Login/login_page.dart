@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:moodtracker/utilities/Auth/login_textfield.dart';
 import 'package:moodtracker/utilities/Auth/sign_in_button.dart';
@@ -21,7 +20,6 @@ class _LoginPageState extends State<LoginPage> {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
     } on FirebaseAuthException catch (e) {
-      print(e.code);
       if (e.code == 'INVALID_LOGIN_CREDENTIALS') {
         userNotFoundDialog();
       } else if (e.code == 'wrong-password') {

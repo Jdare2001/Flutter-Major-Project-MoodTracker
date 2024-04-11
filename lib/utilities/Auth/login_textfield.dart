@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class LoginTextField extends StatelessWidget {
   final String hintText;
-  final controller;
+  final TextEditingController controller;
   final bool obscureText;
 
   const LoginTextField(
       {super.key,
       required this.hintText,
-      this.controller,
+      required this.controller,
       required this.obscureText});
 
   @override
