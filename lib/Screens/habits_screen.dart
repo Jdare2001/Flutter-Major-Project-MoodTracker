@@ -112,6 +112,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
       'dateChecked': todaysDateFormatedString(),
       'positiveOrNeg': checkvalue,
     });
+    _newHabitNameControler.clear();
     Navigator.pop(context);
   }
 
