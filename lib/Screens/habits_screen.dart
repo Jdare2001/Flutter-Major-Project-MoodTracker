@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:moodtracker/model/mood_tracker_db.dart';
-import 'package:moodtracker/model/objects/habit.dart';
+
 import 'package:moodtracker/utilities/date_time_converter.dart';
 import 'package:moodtracker/utilities/HabitComponents/add_habit_alert_dialog.dart';
 import 'package:moodtracker/utilities/HabitComponents/edit_habit_alert_dialog.dart';
@@ -20,17 +18,22 @@ class HabitsScreen extends StatefulWidget {
 class _HabitsScreenState extends State<HabitsScreen> {
   User? currentUser = FirebaseAuth.instance.currentUser;
 
-  dynamic data;
-  final _newHabitNameControler = TextEditingController();
-
-  _onChecked(bool? value, habit) async {
+  void _onChecked(habit, index) async {
     await FirebaseFirestore.instance
         .collection("Users")
         .doc(currentUser!.email)
         .collection('Habits')
-        .doc(habit['name'])
-        .set({'isChecked': !habit['isChecked']});
+        .doc(habit.id)
+        .update({
+      'name': habit['name'],
+      'isChecked': !habit['isChecked'],
+      'dateChecked': habit['dateChecked'],
+      'positiveOrNeg': habit['positiveOrNeg']
+    });
   }
+
+  dynamic data;
+  final _newHabitNameControler = TextEditingController();
 
   void cancelDialog() {
     _newHabitNameControler.clear();
@@ -57,7 +60,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
         .collection("Users")
         .doc(currentUser!.email)
         .collection('Habits')
-        .doc(habit['name'])
+        .doc(habit.id)
         .delete();
 
     _newHabitNameControler.clear();
@@ -69,8 +72,8 @@ class _HabitsScreenState extends State<HabitsScreen> {
         .collection("Users")
         .doc(currentUser!.email)
         .collection('Habits')
-        .doc(habit['name'])
-        .set({
+        .doc(habit.id)
+        .update({
       'name': _newHabitNameControler.text,
       'isChecked': habit['isChecked'],
       'dateChecked': habit['dateChecked'],
@@ -109,6 +112,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
       'dateChecked': todaysDateFormatedString(),
       'positiveOrNeg': checkvalue,
     });
+    Navigator.pop(context);
   }
 
   String positiveOrNegative(bool posOrNeg) {
@@ -161,7 +165,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
                   completed: habit['isChecked'],
                   positive: positiveOrNegative(habit['positiveOrNeg']),
                   editHabit: (context) => editHabit(habit),
-                  onChecked: (value) => _onChecked(value, habit),
+                  onChecked: (value) => _onChecked(habit, value),
                 );
               });
         },
