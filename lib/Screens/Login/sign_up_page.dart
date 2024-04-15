@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:moodtracker/utilities/Auth/login_textfield.dart';
 import 'package:moodtracker/utilities/Auth/sign_in_button.dart';
+import 'package:moodtracker/utilities/date_time_converter.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -14,13 +16,17 @@ class _SignUpPageState extends State<SignUpPage> {
   final emailController = TextEditingController();
 
   final passwordController = TextEditingController();
+  final usernameController = TextEditingController();
 
   final passwordConfController = TextEditingController();
   Future<void> signUpUser() async {
     if (passwordController.text == passwordConfController.text) {
       try {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-            email: emailController.text, password: passwordController.text);
+        UserCredential? userCredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+                email: emailController.text, password: passwordController.text);
+        createUserCollections(userCredential);
+        Navigator.pop(context);
       } on FirebaseAuthException catch (e) {
         if (e.code == 'invalid-email') {
           emailNotValidDialog();
@@ -30,6 +36,36 @@ class _SignUpPageState extends State<SignUpPage> {
       }
     } else {
       passwordsDontMatch();
+    }
+  }
+
+  //create user collection
+  Future<void> createUserCollections(UserCredential? userCredential) async {
+    if (userCredential != null && userCredential.user != null) {
+      await FirebaseFirestore.instance
+          .collection("Users")
+          .doc(userCredential.user!.email)
+          .set({
+        'email': userCredential.user!.email,
+        'username': usernameController.text,
+      });
+      await FirebaseFirestore.instance
+          .collection("Users")
+          .doc(userCredential.user!.email)
+          .collection('Habits')
+          .doc('Walk 10,000 steps')
+          .set({
+        'name': 'Walk 10,000 steps',
+        'isChecked': false,
+        'dateChecked': todaysDateFormatedString(),
+        'positiveOrNeg': true,
+      });
+      await FirebaseFirestore.instance
+          .collection("Users")
+          .doc(userCredential.user!.email)
+          .collection('DailyCheckIn')
+          .doc('Testday')
+          .set({'Name': ''});
     }
   }
 
@@ -81,7 +117,15 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                   const SizedBox(height: 25),
-                  //User field
+                  //username feild
+                  LoginTextField(
+                    controller: usernameController,
+                    hintText: "Username",
+                    obscureText: false,
+                  ),
+
+                  const SizedBox(height: 10),
+                  //email field
                   LoginTextField(
                     controller: emailController,
                     hintText: "Email",

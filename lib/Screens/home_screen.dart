@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:moodtracker/model/database_helper.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:moodtracker/utilities/top_app_bar.dart';
 import 'package:sizer/sizer.dart';
@@ -13,9 +16,30 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String? username = "";
+  final User? currentUser = FirebaseAuth.instance.currentUser;
   final _mySettingsBox = Hive.box("settingsBox");
+  final db = FirebaseFirestore.instance;
 
-  onChecked() {}
+  void getUsername() async {
+    username = await DatabaseHelper().getUserName(currentUser);
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUsername();
+  }
+
+  getUsernameText() {
+    if (username != "") {
+      return username;
+    } else {
+      return "SUer";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,9 +74,9 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "User",
-                            style: TextStyle(
+                          Text(
+                            getUsernameText(),
+                            style: const TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.w600),
                           ),
                           const Text(

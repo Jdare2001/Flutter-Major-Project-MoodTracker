@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:moodtracker/model/mood_tracker_db.dart';
@@ -16,27 +18,18 @@ class HabitsScreen extends StatefulWidget {
 }
 
 class _HabitsScreenState extends State<HabitsScreen> {
-  MoodtrackerDb db = MoodtrackerDb();
-  final _myHabitBox = Hive.box("habitBox");
+  User? currentUser = FirebaseAuth.instance.currentUser;
+
+  dynamic data;
   final _newHabitNameControler = TextEditingController();
 
-  @override
-  void initState() {
-    if (_myHabitBox.get("currentHabitList") == null) {
-      db.createDefaultData();
-    } else {
-      db.loadHabitData();
-    }
-    db.updateHabitBox();
-    super.initState();
-  }
-
-  _onChecked(bool? value, index) {
-    setState(() {
-      db.todaysHabits[index].isChecked = value!;
-    });
-    db.updateHabitBox();
-    db.updateSettingsBox();
+  _onChecked(bool? value, habit) async {
+    await FirebaseFirestore.instance
+        .collection("Users")
+        .doc(currentUser!.email)
+        .collection('Habits')
+        .doc(habit['name'])
+        .set({'isChecked': !habit['isChecked']});
   }
 
   void cancelDialog() {
@@ -44,40 +37,48 @@ class _HabitsScreenState extends State<HabitsScreen> {
     Navigator.of(context).pop();
   }
 
-  void editHabit(int index) {
+  void editHabit(habit) {
     showDialog(
         context: context,
         builder: (context) {
           return EditHabitAlertDialog(
             title: "Edit Habit",
-            hint: db.todaysHabits[index].name,
+            hint: habit['name'],
             cancel: cancelDialog,
             controller: _newHabitNameControler,
-            onSave: () => updateHabit(index),
-            onDelete: () => deleteHabit(index),
+            onSave: () => updateHabit(habit),
+            onDelete: () => deleteHabit(habit),
           );
         });
   }
 
-  void deleteHabit(int index) {
-    setState(() {
-      db.todaysHabits.removeAt(index);
+  void deleteHabit(habit) async {
+    await FirebaseFirestore.instance
+        .collection("Users")
+        .doc(currentUser!.email)
+        .collection('Habits')
+        .doc(habit['name'])
+        .delete();
+
+    _newHabitNameControler.clear();
+    Navigator.of(context).pop();
+  }
+
+  void updateHabit(habit) async {
+    await FirebaseFirestore.instance
+        .collection("Users")
+        .doc(currentUser!.email)
+        .collection('Habits')
+        .doc(habit['name'])
+        .set({
+      'name': _newHabitNameControler.text,
+      'isChecked': habit['isChecked'],
+      'dateChecked': habit['dateChecked'],
+      'positiveOrNeg': habit['positiveOrNeg']
     });
 
     _newHabitNameControler.clear();
     Navigator.of(context).pop();
-    db.updateHabitBox();
-  }
-
-  void updateHabit(int index) {
-    setState(() {
-      db.todaysHabits[index].name = _newHabitNameControler.text;
-
-      _newHabitNameControler.clear();
-      Navigator.of(context).pop();
-      db.updateHabitBox();
-      db.updateSettingsBox();
-    });
   }
 
   //create new habit
@@ -96,24 +97,22 @@ class _HabitsScreenState extends State<HabitsScreen> {
     );
   }
 
-  saveHabit(dynamic checkvalue) {
-    setState(
-      () {
-        db.todaysHabits.add(Habit(
-            name: _newHabitNameControler.text,
-            isChecked: false,
-            dateChecked: todaysDateFormatedString(),
-            positiveOrNeg: checkvalue));
-      },
-    );
-    Navigator.of(context).pop();
-    db.updateHabitBox();
-    db.updateSettingsBox();
-    _newHabitNameControler.clear();
+  saveHabit(dynamic checkvalue) async {
+    await FirebaseFirestore.instance
+        .collection("Users")
+        .doc(currentUser!.email)
+        .collection('Habits')
+        .doc(_newHabitNameControler.text)
+        .set({
+      'name': _newHabitNameControler.text,
+      'isChecked': false,
+      'dateChecked': todaysDateFormatedString(),
+      'positiveOrNeg': checkvalue,
+    });
   }
 
-  String positiveOrNegative(int index) {
-    if (db.todaysHabits[index].positiveOrNeg) {
+  String positiveOrNegative(bool posOrNeg) {
+    if (posOrNeg) {
       return "Positive";
     } else {
       return "Negative";
@@ -125,27 +124,48 @@ class _HabitsScreenState extends State<HabitsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
-        appBar: getTopAppBar("Habits", context),
-        floatingActionButton: FloatingActionButton(
-          onPressed: createNewHabit,
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          child: Icon(
-            Icons.add,
-            color: Theme.of(context).colorScheme.onSurface,
-          ),
+      backgroundColor: Theme.of(context).colorScheme.background,
+      appBar: getTopAppBar("Habits", context),
+      floatingActionButton: FloatingActionButton(
+        onPressed: createNewHabit,
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        child: Icon(
+          Icons.add,
+          color: Theme.of(context).colorScheme.onSurface,
         ),
-        body: ListView.builder(
-          itemCount: db.todaysHabits.length,
-          itemBuilder: (context, index) {
-            return HabitTileWidget(
-              habitName: db.todaysHabits[index].name,
-              completed: db.todaysHabits[index].isChecked,
-              onChecked: (value) => _onChecked(value, index),
-              editHabit: (context) => editHabit(index),
-              positive: positiveOrNegative(index),
-            );
-          },
-        ));
+      ),
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance
+            .collection("Users")
+            .doc(currentUser!.email)
+            .collection("Habits")
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Text("error");
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Text("error");
+          }
+          if (snapshot.data == null) {
+            return const Text("No Habits Yet");
+          }
+
+          final habits = snapshot.data!.docs;
+          return ListView.builder(
+              itemCount: habits.length,
+              itemBuilder: (context, index) {
+                final habit = habits[index];
+                return HabitTileWidget(
+                  habitName: habit['name'],
+                  completed: habit['isChecked'],
+                  positive: positiveOrNegative(habit['positiveOrNeg']),
+                  editHabit: (context) => editHabit(habit),
+                  onChecked: (value) => _onChecked(value, habit),
+                );
+              });
+        },
+      ),
+    );
   }
 }
