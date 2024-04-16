@@ -17,6 +17,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String? username = "";
+  double? percent = 0.0;
   final User? currentUser = FirebaseAuth.instance.currentUser;
   final _mySettingsBox = Hive.box("settingsBox");
   final db = FirebaseFirestore.instance;
@@ -36,12 +37,27 @@ class _HomePageState extends State<HomePage> {
     if (username != "") {
       return username;
     } else {
-      return "SUer";
+      return "User";
+    }
+  }
+
+  getPercentDone() async {
+    percent = await DatabaseHelper().getPercentDone(currentUser) as double;
+  }
+
+  getDoublePercent() {
+    getPercentDone();
+
+    if (percent != 0) {
+      return percent!.toDouble();
+    } else {
+      return 0.0;
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    String username = getUsernameText();
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: getTopAppBar("Welcome Back", context),
@@ -75,7 +91,7 @@ class _HomePageState extends State<HomePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            getUsernameText(),
+                            username,
                             style: const TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.w600),
                           ),
@@ -117,7 +133,7 @@ class _HomePageState extends State<HomePage> {
                   CircularPercentIndicator(
                     radius: 50,
                     backgroundColor: Theme.of(context).colorScheme.background,
-                    percent: percentCalculatedDouble(),
+                    percent: getDoublePercent(),
                     progressColor: Theme.of(context).colorScheme.secondary,
                   ),
                   const SizedBox(
@@ -136,7 +152,7 @@ class _HomePageState extends State<HomePage> {
                             fontWeight: FontWeight.w600),
                       ),
                       Text(
-                        '${(percentCalculatedDouble() * 100).toInt()}%',
+                        '${(percent! * 100).toInt()}%',
                         style: TextStyle(
                             fontSize: 25,
                             color: Theme.of(context).colorScheme.onSurface,
@@ -176,15 +192,5 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-  }
-
-  double percentCalculatedDouble() {
-    double percent = 0.0;
-    if (_mySettingsBox.get("todaysPercent") != null) {
-      percent = _mySettingsBox.get("todaysPercent");
-    } else {
-      percent = 0;
-    }
-    return percent;
   }
 }
