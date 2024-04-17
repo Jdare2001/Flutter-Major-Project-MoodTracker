@@ -7,7 +7,7 @@ class AddHabitAlertDialog extends StatefulWidget {
   final String title;
   final String hint;
   final VoidCallback cancel;
-  final Function(dynamic) onSave;
+  final Function(dynamic, String) onSave;
 
   const AddHabitAlertDialog({
     super.key,
@@ -112,7 +112,8 @@ class _AddHabitAlertDialogState extends State<AddHabitAlertDialog> {
               )),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             ElevatedButton(
-              onPressed: () => widget.onSave(checkValue),
+              onPressed: () =>
+                  widget.onSave(checkValue, habitTypes[selectedType]),
               child: Text(
                 "Save",
                 style: TextStyle(

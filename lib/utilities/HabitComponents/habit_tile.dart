@@ -7,6 +7,7 @@ class HabitTileWidget extends StatelessWidget {
   final Function(bool?)? onChecked;
   final Function(BuildContext)? editHabit;
   final String positive;
+  final String habitType;
 
   const HabitTileWidget({
     super.key,
@@ -15,6 +16,7 @@ class HabitTileWidget extends StatelessWidget {
     required this.onChecked,
     required this.editHabit,
     required this.positive,
+    required this.habitType,
   });
 
   @override
@@ -56,10 +58,10 @@ class HabitTileWidget extends StatelessWidget {
                             fontSize: 25, fontWeight: FontWeight.w600),
                       ),
                       Text(
-                        "$positive Habit",
+                        "$positive $habitType Habit",
                         style: const TextStyle(
                             fontSize: 15, fontWeight: FontWeight.w600),
-                      )
+                      ),
                     ],
                   ),
                 ),

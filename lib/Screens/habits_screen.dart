@@ -30,7 +30,8 @@ class _HabitsScreenState extends State<HabitsScreen> {
       'name': habit['name'],
       'isChecked': !habit['isChecked'],
       'dateChecked': todaysDateFormatedString(),
-      'positiveOrNeg': habit['positiveOrNeg']
+      'positiveOrNeg': habit['positiveOrNeg'],
+      'habitType': habit['habitType']
     });
   }
 
@@ -79,7 +80,8 @@ class _HabitsScreenState extends State<HabitsScreen> {
       'name': _newHabitNameControler.text,
       'isChecked': habit['isChecked'],
       'dateChecked': habit['dateChecked'],
-      'positiveOrNeg': habit['positiveOrNeg']
+      'positiveOrNeg': habit['positiveOrNeg'],
+      'habitType': habit['habitType']
     });
 
     _newHabitNameControler.clear();
@@ -102,7 +104,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
     );
   }
 
-  saveHabit(dynamic checkvalue) async {
+  saveHabit(dynamic checkvalue, String habitType) async {
     await FirebaseFirestore.instance
         .collection("Users")
         .doc(currentUser!.email)
@@ -113,6 +115,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
       'isChecked': false,
       'dateChecked': todaysDateFormatedString(),
       'positiveOrNeg': checkvalue,
+      'habitType': habitType,
     });
     _newHabitNameControler.clear();
     Navigator.pop(context);
@@ -123,6 +126,14 @@ class _HabitsScreenState extends State<HabitsScreen> {
       return "Positive";
     } else {
       return "Negative";
+    }
+  }
+
+  String habitTypeChecker(String habType) {
+    if (habType == 'No Type') {
+      return '';
+    } else {
+      return habType;
     }
   }
 
@@ -152,7 +163,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
             return const Text("error");
           }
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Text("error");
+            return const Text("Loading");
           }
           if (snapshot.data == null) {
             return const Text("No Habits Yet");
@@ -169,6 +180,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
                   positive: positiveOrNegative(habit['positiveOrNeg']),
                   editHabit: (context) => editHabit(habit),
                   onChecked: (value) => _onChecked(habit, value),
+                  habitType: habitTypeChecker(habit['habitType']),
                 );
               });
         },
