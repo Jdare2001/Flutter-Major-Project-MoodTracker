@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
     if (percent != 0) {
       return percent!.toDouble();
     } else {
-      return 0.0;
+      return percent;
     }
   }
 
