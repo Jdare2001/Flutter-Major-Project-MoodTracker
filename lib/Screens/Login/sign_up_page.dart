@@ -61,6 +61,7 @@ class _SignUpPageState extends State<SignUpPage> {
         'isChecked': false,
         'dateChecked': todaysDateFormatedString(),
         'positiveOrNeg': true,
+        'habitType': 'No Type'
       });
       await FirebaseFirestore.instance
           .collection("Users")
