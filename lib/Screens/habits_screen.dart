@@ -3,7 +3,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:moodtracker/utilities/date_time_converter.dart';
 import 'package:moodtracker/utilities/HabitComponents/add_habit_alert_dialog.dart';
 import 'package:moodtracker/utilities/HabitComponents/edit_habit_alert_dialog.dart';
