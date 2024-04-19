@@ -29,7 +29,19 @@ class _TopLevelScreenState extends State<TopLevelScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_selectedIndex],
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 120),
+        child: _pages[_selectedIndex],
+        transitionBuilder: (child, animation) {
+          return SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          );
+        },
+      ),
       bottomNavigationBar: CurvedNavigationBar(
         color: Theme.of(context).colorScheme.primary,
         backgroundColor: Theme.of(context).colorScheme.background,

@@ -3,8 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+
 import 'package:moodtracker/model/database_helper.dart';
-import 'package:percent_indicator/percent_indicator.dart';
+import 'package:moodtracker/utilities/progress_indicator.dart';
+
 import 'package:moodtracker/utilities/top_app_bar.dart';
 import 'package:sizer/sizer.dart';
 
@@ -18,9 +20,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String? username = "";
   double? percent = 0.0;
+  double? adaptivepercent = 0.0;
+
   final User? currentUser = FirebaseAuth.instance.currentUser;
-  final _mySettingsBox = Hive.box("settingsBox");
+
   final db = FirebaseFirestore.instance;
+  final _settingsBox = Hive.box("settingsBox");
 
   void getUsername() async {
     username = await DatabaseHelper().getUserName(currentUser);
@@ -30,6 +35,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    DatabaseHelper().updateDocuments(currentUser);
     getUsername();
   }
 
@@ -37,7 +43,7 @@ class _HomePageState extends State<HomePage> {
     if (username != "") {
       return username;
     } else {
-      return "User";
+      return "";
     }
   }
 
@@ -57,7 +63,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    String username = getUsernameText();
+    _settingsBox.put('Username', getUsernameText());
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: getTopAppBar("Welcome Back", context),
@@ -91,22 +97,20 @@ class _HomePageState extends State<HomePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            username,
+                            _settingsBox.get('Username'),
                             style: const TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.w600),
                           ),
                           const Text(
-                            "Beginner - 300 exp to level up ",
+                            "Beginner",
                             style: TextStyle(
                                 fontSize: 15, fontWeight: FontWeight.w600),
                           ),
                           const SizedBox(height: 7),
-                          LinearProgressIndicator(
-                            backgroundColor:
-                                Theme.of(context).colorScheme.background,
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                                Theme.of(context).colorScheme.secondary),
-                            value: 0.7,
+                          const HabitCircularProgressIndicator(
+                            percentage: 0.6,
+                            height: 5,
+                            width: 250,
                           ),
                         ],
                       ),
@@ -119,7 +123,7 @@ class _HomePageState extends State<HomePage> {
               height: 5.h,
             ),
             Container(
-              height: 200,
+              height: 160,
               width: 380,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
@@ -130,38 +134,36 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(
                     width: 25,
                   ),
-                  CircularPercentIndicator(
-                    radius: 50,
-                    backgroundColor: Theme.of(context).colorScheme.background,
-                    percent: getDoublePercent(),
-                    progressColor: Theme.of(context).colorScheme.secondary,
-                  ),
                   const SizedBox(
                     width: 15,
                   ),
                   Column(
                     children: [
                       const SizedBox(
-                        height: 55,
+                        height: 25,
                       ),
                       Text(
                         'You have completed',
                         style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 20,
                             color: Theme.of(context).colorScheme.onSurface,
                             fontWeight: FontWeight.w600),
                       ),
-                      Text(
-                        '${(percent! * 100).toInt()}%',
-                        style: TextStyle(
-                            fontSize: 25,
-                            color: Theme.of(context).colorScheme.onSurface,
-                            fontWeight: FontWeight.w600),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      HabitCircularProgressIndicator(
+                        percentage: getDoublePercent(),
+                        height: 50,
+                        width: 300,
+                      ),
+                      const SizedBox(
+                        height: 5,
                       ),
                       Text(
                         'of your habits for the day',
                         style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 20,
                             color: Theme.of(context).colorScheme.onSurface,
                             fontWeight: FontWeight.w600),
                       ),
@@ -192,5 +194,12 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  double progressIndicator() {
+    if (adaptivepercent! < percent!) {
+      adaptivepercent = adaptivepercent! + 0.01;
+    }
+    return adaptivepercent as double;
   }
 }

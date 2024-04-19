@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:moodtracker/utilities/date_time_converter.dart';
 
 class DatabaseHelper {
   final db = FirebaseFirestore.instance;
@@ -46,5 +47,25 @@ class DatabaseHelper {
     } catch (e) {
       return 0.0;
     }
+  }
+
+  Future<void> updateDocuments(User? currentUser) async {
+    final CollectionReference collectionRef = FirebaseFirestore.instance
+        .collection("Users")
+        .doc(currentUser!.email)
+        .collection('Habits');
+
+    QuerySnapshot querySnapshot = await collectionRef.get();
+
+    // Iterate through the documents
+    querySnapshot.docs.forEach((doc) async {
+      if (doc['isChecked'] == true) {
+        if (doc['dateChecked'] != todaysDateFormatedString()) {
+          await collectionRef.doc(doc.id).update({
+            'isChecked': false,
+          });
+        }
+      }
+    });
   }
 }
