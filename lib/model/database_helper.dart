@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_function_literals_in_foreach_calls
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:moodtracker/utilities/date_time_converter.dart';
@@ -49,7 +51,7 @@ class DatabaseHelper {
     }
   }
 
-  Future<void> updateDocuments(User? currentUser) async {
+  Future<void> updateDocumentsDaily(User? currentUser) async {
     final CollectionReference collectionRef = FirebaseFirestore.instance
         .collection("Users")
         .doc(currentUser!.email)
@@ -67,5 +69,46 @@ class DatabaseHelper {
         }
       }
     });
+  }
+
+  Future<List<String?>> getHabitsTypeList(
+      User? currentUser, bool posOrNeg) async {
+    final CollectionReference collectionRef = FirebaseFirestore.instance
+        .collection("Users")
+        .doc(currentUser!.email)
+        .collection('Habits');
+
+    QuerySnapshot querySnapshot = await collectionRef.get();
+
+    List<String?> posTypeList = [];
+
+    // Iterate through the documents
+    querySnapshot.docs.forEach((doc) async {
+      if (doc['isChecked'] == true) {
+        if (doc['positiveOrNeg'] == posOrNeg) {
+          posTypeList.add(doc['habitType']);
+        }
+      }
+    });
+    return posTypeList;
+  }
+
+  Future<int> getPosOrNegCount(User? currentUser, bool posOrNeg) async {
+    final CollectionReference collectionRef = FirebaseFirestore.instance
+        .collection("Users")
+        .doc(currentUser!.email)
+        .collection('Habits');
+
+    QuerySnapshot querySnapshot = await collectionRef.get();
+
+    int counter = 0;
+
+    // Iterate through the documents
+    querySnapshot.docs.forEach((doc) async {
+      if (doc['positiveOrNeg'] == posOrNeg) {
+        counter++;
+      }
+    });
+    return counter;
   }
 }

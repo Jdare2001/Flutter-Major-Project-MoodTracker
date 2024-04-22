@@ -1,6 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:moodtracker/utilities/date_time_converter.dart';
 import 'package:moodtracker/utilities/top_app_bar.dart';
 import 'package:sizer/sizer.dart';
+import 'package:moodtracker/model/database_helper.dart';
 
 class DailyCheckInScreen extends StatefulWidget {
   const DailyCheckInScreen({super.key});
@@ -10,6 +14,7 @@ class DailyCheckInScreen extends StatefulWidget {
 }
 
 class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
+  User? currentUser = FirebaseAuth.instance.currentUser;
   var rating = 5.0;
   @override
   Widget build(BuildContext context) {
@@ -62,7 +67,8 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
               height: 10.h,
             ),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
+                await saveCheckIn(currentUser, rating.toInt());
                 Navigator.pop(context);
               },
               style: ElevatedButton.styleFrom(
@@ -79,6 +85,23 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> saveCheckIn(User? currentUser, int moodval) async {
+    await FirebaseFirestore.instance
+        .collection("Users")
+        .doc(currentUser!.email)
+        .collection('DailyCheckIn')
+        .doc(todaysDateFormatedString())
+        .set({
+      'date': todaysDateFormatedString(),
+      'happinessValue': moodval,
+      'numPosHabs': await DatabaseHelper().getPosOrNegCount(currentUser, true),
+      'numNegHabs': await DatabaseHelper().getPosOrNegCount(currentUser, false),
+      'posHabList': await DatabaseHelper().getHabitsTypeList(currentUser, true),
+      'negHabList':
+          await DatabaseHelper().getHabitsTypeList(currentUser, false),
+    });
   }
 
   String getMessage(rating) {

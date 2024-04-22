@@ -30,7 +30,7 @@ class _TopLevelScreenState extends State<TopLevelScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 120),
+        duration: const Duration(milliseconds: 170),
         child: _pages[_selectedIndex],
         transitionBuilder: (child, animation) {
           return SlideTransition(

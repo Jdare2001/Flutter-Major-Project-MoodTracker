@@ -14,3 +14,9 @@ String todaysDateFormatedString() {
   String finalFormat = year + month + day;
   return finalFormat;
 }
+
+DateTime dateFormatedToDateTime(String date) {
+  DateTime dtObject = DateTime.parse(date);
+
+  return dtObject;
+}
