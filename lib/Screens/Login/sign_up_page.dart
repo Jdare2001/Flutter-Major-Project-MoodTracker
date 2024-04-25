@@ -63,12 +63,10 @@ class _SignUpPageState extends State<SignUpPage> {
         'positiveOrNeg': true,
         'habitType': 'No Type'
       });
-      await FirebaseFirestore.instance
+      FirebaseFirestore.instance
           .collection("Users")
           .doc(userCredential.user!.email)
-          .collection('DailyCheckIn')
-          .doc('Testday')
-          .set({'Name': ''});
+          .collection('DailyCheckIn');
     }
   }
 

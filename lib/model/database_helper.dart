@@ -111,4 +111,26 @@ class DatabaseHelper {
     });
     return counter;
   }
+
+  Future<double?> getHappinessAdverage(User? currentUser) async {
+    double adv = 0.0;
+    int count = 0;
+    int sevenDaysAgo = getSevenDaysAgo();
+    final CollectionReference collectionRef = FirebaseFirestore.instance
+        .collection("Users")
+        .doc(currentUser!.email)
+        .collection('DailyCheckIn');
+
+    QuerySnapshot querySnapshot = await collectionRef.get();
+
+    // Iterate through the documents
+    querySnapshot.docs.forEach((doc) async {
+      if (int.parse(doc['date']) > sevenDaysAgo) {
+        adv = adv + doc['happinessValue'];
+        count++;
+      }
+    });
+    adv = adv / count;
+    return adv;
+  }
 }

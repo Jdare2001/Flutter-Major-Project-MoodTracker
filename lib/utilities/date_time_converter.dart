@@ -1,6 +1,11 @@
 String todaysDateFormatedString() {
   var dtObject = DateTime.now();
 
+  String finalFormat = dateFormattedToString(dtObject);
+  return finalFormat;
+}
+
+String dateFormattedToString(DateTime dtObject) {
   String day = dtObject.day.toString();
   if (day.length == 1) {
     day = "0$day";
@@ -19,4 +24,11 @@ DateTime dateFormatedToDateTime(String date) {
   DateTime dtObject = DateTime.parse(date);
 
   return dtObject;
+}
+
+int getSevenDaysAgo() {
+  DateTime todaysDate = DateTime.now();
+  DateTime aWeekAgoDate = todaysDate.subtract(const Duration(days: 7));
+  String aWeekAgoDateString = dateFormattedToString(aWeekAgoDate);
+  return int.parse(aWeekAgoDateString);
 }

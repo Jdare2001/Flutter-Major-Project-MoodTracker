@@ -23,7 +23,7 @@ void main() async {
   );
   Hive.registerAdapter(HabitAdapter());
   await Hive.initFlutter();
-  await Hive.openBox("habitBox");
+
   await Hive.openBox("settingsBox");
 
   SystemChrome.setPreferredOrientations(
