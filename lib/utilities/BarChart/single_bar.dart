@@ -1,6 +1,6 @@
 class SingleBar {
   final int x;
-  final double y;
+  final int y;
 
   SingleBar({
     required this.x,

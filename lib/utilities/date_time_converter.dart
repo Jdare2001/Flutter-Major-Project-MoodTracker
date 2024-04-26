@@ -26,9 +26,9 @@ DateTime dateFormatedToDateTime(String date) {
   return dtObject;
 }
 
-int getSevenDaysAgo() {
+int getXDaysAgo(int x) {
   DateTime todaysDate = DateTime.now();
-  DateTime aWeekAgoDate = todaysDate.subtract(const Duration(days: 7));
+  DateTime aWeekAgoDate = todaysDate.subtract(Duration(days: x));
   String aWeekAgoDateString = dateFormattedToString(aWeekAgoDate);
   return int.parse(aWeekAgoDateString);
 }

@@ -1,34 +1,35 @@
 import 'package:moodtracker/utilities/BarChart/single_bar.dart';
+import 'package:moodtracker/utilities/date_time_converter.dart';
 
 class BarData {
-  final double day1;
-  final double day2;
-  final double day3;
-  final double day4;
-  final double day5;
-  final double day6;
-  final double day7;
-
+  final int day1;
+  final int day2;
+  final int day3;
+  final int day4;
+  final int day5;
+  final int day6;
+  final int day7;
   BarData(
-      {required this.day1,
-      required this.day2,
-      required this.day3,
-      required this.day4,
-      required this.day5,
-      required this.day6,
-      required this.day7});
+    this.day1,
+    this.day2,
+    this.day3,
+    this.day4,
+    this.day5,
+    this.day6,
+    this.day7,
+  );
 
   List<SingleBar> chartData = [];
 
-  void initializeChartData() {
+  void initializeBarData() {
     chartData = [
-      SingleBar(x: 0, y: day1),
-      SingleBar(x: 0, y: day2),
-      SingleBar(x: 0, y: day3),
-      SingleBar(x: 0, y: day4),
-      SingleBar(x: 0, y: day5),
-      SingleBar(x: 0, y: day6),
-      SingleBar(x: 0, y: day7),
+      SingleBar(x: getXDaysAgo(7) % 100 + 1, y: day1),
+      SingleBar(x: getXDaysAgo(6) % 100 + 1, y: day2),
+      SingleBar(x: getXDaysAgo(5) % 100 + 1, y: day3),
+      SingleBar(x: getXDaysAgo(4) % 100 + 1, y: day4),
+      SingleBar(x: getXDaysAgo(3) % 100 + 1, y: day5),
+      SingleBar(x: getXDaysAgo(2) % 100 + 1, y: day6),
+      SingleBar(x: getXDaysAgo(1) % 100 + 1, y: day7),
     ];
   }
 }
