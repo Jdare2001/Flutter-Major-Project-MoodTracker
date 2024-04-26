@@ -161,7 +161,8 @@ class DatabaseHelper {
     return dataList;
   }
 
-  Future<List<int>> getGoodHabListDataForLastWeek(User? currentUser) async {
+  Future<List<int>> getGoodHabListDataAmountsForLastWeek(
+      User? currentUser) async {
     if (currentUser == null) {
       throw ArgumentError('currentUser cannot be null');
     }
@@ -191,7 +192,8 @@ class DatabaseHelper {
     return dataList;
   }
 
-  Future<List<int>> getNegHabListDataForLastWeek(User? currentUser) async {
+  Future<List<int>> getNegHabListDataAmountsForLastWeek(
+      User? currentUser) async {
     if (currentUser == null) {
       throw ArgumentError('currentUser cannot be null');
     }
@@ -211,10 +213,56 @@ class DatabaseHelper {
         int daysDifference = DateTime.now().difference(date).inDays;
         int index = 6 - daysDifference;
         if (index >= 0 && index < 7) {
-          List goodList = doc['negHabList'];
-          double result = goodList.length / doc['numNegHabs'];
+          List negList = doc['negHabList'];
+          double result = negList.length / doc['numNegHabs'];
           dataList[index] = ((result * 100).toInt());
         }
+      }
+    });
+
+    return dataList;
+  }
+
+  Future<List<dynamic>> getGoodHabListDataForLastWeek(User? currentUser) async {
+    if (currentUser == null) {
+      throw ArgumentError('currentUser cannot be null');
+    }
+
+    List<dynamic> dataList = [];
+
+    final CollectionReference collectionRef = FirebaseFirestore.instance
+        .collection("Users")
+        .doc(currentUser.email)
+        .collection('DailyCheckIn');
+
+    QuerySnapshot querySnapshot = await collectionRef.get();
+    // Process query results
+    querySnapshot.docs.forEach((doc) {
+      if (int.parse(doc['date']) >= getXDaysAgo(7)) {
+        dataList.addAll(doc['posHabList']);
+      }
+    });
+
+    return dataList;
+  }
+
+  Future<List<dynamic>> getNegHabListDataForLastWeek(User? currentUser) async {
+    if (currentUser == null) {
+      throw ArgumentError('currentUser cannot be null');
+    }
+
+    List<dynamic> dataList = [];
+
+    final CollectionReference collectionRef = FirebaseFirestore.instance
+        .collection("Users")
+        .doc(currentUser.email)
+        .collection('DailyCheckIn');
+
+    QuerySnapshot querySnapshot = await collectionRef.get();
+    // Process query results
+    querySnapshot.docs.forEach((doc) {
+      if (int.parse(doc['date']) >= getXDaysAgo(7)) {
+        dataList.addAll(doc['negHabList']);
       }
     });
 

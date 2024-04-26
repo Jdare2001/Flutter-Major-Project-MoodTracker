@@ -48,8 +48,8 @@ class _JournalScreenState extends State<JournalScreen> {
 
   List<int>? goodHabListed = [];
   getGoodList() async {
-    goodHabListed =
-        await DatabaseHelper().getGoodHabListDataForLastWeek(currentUser);
+    goodHabListed = await DatabaseHelper()
+        .getGoodHabListDataAmountsForLastWeek(currentUser);
     setState(() {});
   }
 
@@ -64,7 +64,7 @@ class _JournalScreenState extends State<JournalScreen> {
   List<int>? negHabListed = [];
   getNegList() async {
     negHabListed =
-        await DatabaseHelper().getNegHabListDataForLastWeek(currentUser);
+        await DatabaseHelper().getNegHabListDataAmountsForLastWeek(currentUser);
     setState(() {});
   }
 
@@ -106,6 +106,7 @@ class _JournalScreenState extends State<JournalScreen> {
                 "Average Happiness: ${getAverageHappiness()!.toStringAsFixed(2)}",
                 style: const TextStyle(fontSize: 28),
               ),
+              const SizedBox(height: 15),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/WeekAtAGlance');
