@@ -1,10 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
-
 import 'package:flutter/material.dart';
 import 'package:moodtracker/model/database_helper.dart';
 import 'package:moodtracker/utilities/BarChart/bar_graph.dart';
-import 'package:moodtracker/utilities/date_time_converter.dart';
+
 import 'package:moodtracker/utilities/top_app_bar.dart';
 
 class JournalScreen extends StatefulWidget {
@@ -84,11 +82,28 @@ class _JournalScreenState extends State<JournalScreen> {
                 height: 15,
               ),
               Container(
-                  padding: const EdgeInsets.only(right: 30),
-                  height: 200,
-                  child: TheBarChart(
-                    theBarData: getTheHappyList(),
-                  )),
+                padding: const EdgeInsets.only(right: 30),
+                height: 200,
+                child: TheBarChart(
+                  maxY: 10,
+                  theBarData: getTheHappyList(),
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              const Text("Good Habits Done", style: TextStyle(fontSize: 20)),
+              const SizedBox(
+                height: 15,
+              ),
+              Container(
+                padding: const EdgeInsets.only(right: 30),
+                height: 200,
+                child: TheBarChart(
+                  theBarData: getTheHappyList(),
+                  maxY: 10,
+                ),
+              ),
             ],
           ),
         ),

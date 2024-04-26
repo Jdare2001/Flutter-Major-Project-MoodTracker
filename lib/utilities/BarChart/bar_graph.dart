@@ -4,7 +4,8 @@ import 'package:moodtracker/utilities/BarChart/bar_data.dart';
 
 class TheBarChart extends StatelessWidget {
   final List<int> theBarData;
-  const TheBarChart({super.key, required this.theBarData});
+  final double maxY;
+  const TheBarChart({super.key, required this.theBarData, required this.maxY});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class TheBarChart extends StatelessWidget {
     return BarChart(
       BarChartData(
         minY: 0.0,
-        maxY: 10.0,
+        maxY: maxY,
         gridData: const FlGridData(
           show: false,
         ),
