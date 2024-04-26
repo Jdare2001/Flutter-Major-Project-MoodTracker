@@ -18,6 +18,8 @@ class _JournalScreenState extends State<JournalScreen> {
     super.initState();
     getAverage();
     getHappyList();
+    getGoodList();
+    getNegList();
   }
 
   double? average = 0.0;
@@ -29,6 +31,7 @@ class _JournalScreenState extends State<JournalScreen> {
   }
 
   List<int>? happyListed = [];
+  List<int>? goodListed = List<int>.filled(7, 0);
   getHappyList() async {
     happyListed =
         await DatabaseHelper().getHappyListDataForLastWeek(currentUser);
@@ -41,6 +44,36 @@ class _JournalScreenState extends State<JournalScreen> {
       return theList;
     } else {
       return happyListed;
+    }
+  }
+
+  List<int>? goodHabListed = [];
+  getGoodList() async {
+    goodHabListed =
+        await DatabaseHelper().getGoodHabListDataForLastWeek(currentUser);
+    setState(() {});
+  }
+
+  getTheGoodList() {
+    if (goodHabListed!.isEmpty) {
+      return theList;
+    } else {
+      return goodHabListed;
+    }
+  }
+
+  List<int>? negHabListed = [];
+  getNegList() async {
+    negHabListed =
+        await DatabaseHelper().getNegHabListDataForLastWeek(currentUser);
+    setState(() {});
+  }
+
+  getTheNegList() {
+    if (negHabListed!.isEmpty) {
+      return theList;
+    } else {
+      return negHabListed;
     }
   }
 
@@ -92,22 +125,7 @@ class _JournalScreenState extends State<JournalScreen> {
               const SizedBox(
                 height: 15,
               ),
-              const Text("Good Habits Done", style: TextStyle(fontSize: 20)),
-              const SizedBox(
-                height: 15,
-              ),
-              Container(
-                padding: const EdgeInsets.only(right: 30),
-                height: 200,
-                child: TheBarChart(
-                  theBarData: getTheHappyList(),
-                  maxY: 10,
-                ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              const Text("Negative Habits Done",
+              const Text("Percent of Good Habits Done",
                   style: TextStyle(fontSize: 20)),
               const SizedBox(
                 height: 15,
@@ -116,8 +134,24 @@ class _JournalScreenState extends State<JournalScreen> {
                 padding: const EdgeInsets.only(right: 30),
                 height: 200,
                 child: TheBarChart(
-                  theBarData: getTheHappyList(),
-                  maxY: 10,
+                  theBarData: getTheGoodList(),
+                  maxY: 100,
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              const Text("Percent of Negative Habits Done",
+                  style: TextStyle(fontSize: 20)),
+              const SizedBox(
+                height: 15,
+              ),
+              Container(
+                padding: const EdgeInsets.only(right: 30),
+                height: 200,
+                child: TheBarChart(
+                  theBarData: getTheNegList(),
+                  maxY: 100,
                 ),
               ),
             ],

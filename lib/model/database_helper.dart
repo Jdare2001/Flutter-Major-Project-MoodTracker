@@ -1,7 +1,4 @@
 // ignore_for_file: avoid_function_literals_in_foreach_calls
-
-import 'dart:ffi';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:moodtracker/utilities/date_time_converter.dart';
@@ -136,31 +133,6 @@ class DatabaseHelper {
     return adv;
   }
 
-  Future<List<int>> getHappinessForWeek(User? currentUser) async {
-    List<int> happynessList = [];
-    int dayNumber = 7;
-
-    final CollectionReference collectionRef = FirebaseFirestore.instance
-        .collection("Users")
-        .doc(currentUser!.email)
-        .collection('DailyCheckIn');
-
-    QuerySnapshot querySnapshot = await collectionRef.get();
-
-    // Iterate through the documents
-    querySnapshot.docs.forEach((doc) async {
-      if (int.parse(doc['date']) == getXDaysAgo(dayNumber)) {
-        happynessList.add(doc['happinessValue']);
-        dayNumber--;
-      } else {
-        happynessList.add(0);
-        dayNumber--;
-      }
-    });
-
-    return happynessList;
-  }
-
   Future<List<int>> getHappyListDataForLastWeek(User? currentUser) async {
     if (currentUser == null) {
       throw ArgumentError('currentUser cannot be null');
@@ -182,6 +154,66 @@ class DatabaseHelper {
         int index = 6 - daysDifference;
         if (index >= 0 && index < 7) {
           dataList[index] = doc['happinessValue'];
+        }
+      }
+    });
+
+    return dataList;
+  }
+
+  Future<List<int>> getGoodHabListDataForLastWeek(User? currentUser) async {
+    if (currentUser == null) {
+      throw ArgumentError('currentUser cannot be null');
+    }
+
+    List<int> dataList = List<int>.filled(7, 0);
+
+    final CollectionReference collectionRef = FirebaseFirestore.instance
+        .collection("Users")
+        .doc(currentUser.email)
+        .collection('DailyCheckIn');
+
+    QuerySnapshot querySnapshot = await collectionRef.get();
+    // Process query results
+    querySnapshot.docs.forEach((doc) {
+      if (int.parse(doc['date']) >= getXDaysAgo(7)) {
+        DateTime date = DateTime.parse(doc['date']);
+        int daysDifference = DateTime.now().difference(date).inDays;
+        int index = 6 - daysDifference;
+        if (index >= 0 && index < 7) {
+          List goodList = doc['posHabList'];
+          double result = goodList.length / doc['numPosHabs'];
+          dataList[index] = ((result * 100).toInt());
+        }
+      }
+    });
+
+    return dataList;
+  }
+
+  Future<List<int>> getNegHabListDataForLastWeek(User? currentUser) async {
+    if (currentUser == null) {
+      throw ArgumentError('currentUser cannot be null');
+    }
+
+    List<int> dataList = List<int>.filled(7, 0);
+
+    final CollectionReference collectionRef = FirebaseFirestore.instance
+        .collection("Users")
+        .doc(currentUser.email)
+        .collection('DailyCheckIn');
+
+    QuerySnapshot querySnapshot = await collectionRef.get();
+    // Process query results
+    querySnapshot.docs.forEach((doc) {
+      if (int.parse(doc['date']) >= getXDaysAgo(7)) {
+        DateTime date = DateTime.parse(doc['date']);
+        int daysDifference = DateTime.now().difference(date).inDays;
+        int index = 6 - daysDifference;
+        if (index >= 0 && index < 7) {
+          List goodList = doc['negHabList'];
+          double result = goodList.length / doc['numNegHabs'];
+          dataList[index] = ((result * 100).toInt());
         }
       }
     });
