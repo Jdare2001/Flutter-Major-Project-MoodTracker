@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:moodtracker/model/database_helper.dart';
-import 'package:moodtracker/utilities/progress_indicator.dart';
-import 'package:moodtracker/utilities/top_app_bar.dart';
+import 'package:moodtracker/utilities/Components/progress_indicator.dart';
+import 'package:moodtracker/utilities/Components/top_app_bar.dart';
 import 'package:sizer/sizer.dart';
 
 class HomePage extends StatefulWidget {

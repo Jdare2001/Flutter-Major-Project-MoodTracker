@@ -12,6 +12,7 @@ import 'package:moodtracker/Screens/journal_screen.dart';
 import 'package:moodtracker/Screens/settings_screen.dart';
 import 'package:moodtracker/model/objects/habit.dart';
 import 'package:moodtracker/Theme/theme.dart';
+import 'package:moodtracker/utilities/Components/week_at_glance.dart';
 import 'package:sizer/sizer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -59,6 +60,7 @@ class MyApp extends StatelessWidget {
             '/AuthScreen': (context) => const AuthScreen(),
             '/SignUpScreen': (context) => const SignUpPage(),
             '/ForgotPasswordScreen': (context) => const ForgotPasswordPage(),
+            '/WeekAtAGlance': (context) => const WeekAtAGlance(),
           },
         );
       },

@@ -1,5 +1,4 @@
 // ignore_for_file: use_build_context_synchronously
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +6,7 @@ import 'package:moodtracker/utilities/date_time_converter.dart';
 import 'package:moodtracker/utilities/HabitComponents/add_habit_alert_dialog.dart';
 import 'package:moodtracker/utilities/HabitComponents/edit_habit_alert_dialog.dart';
 import 'package:moodtracker/utilities/HabitComponents/habit_tile.dart';
-import 'package:moodtracker/utilities/top_app_bar.dart';
+import 'package:moodtracker/utilities/Components/top_app_bar.dart';
 
 class HabitsScreen extends StatefulWidget {
   const HabitsScreen({super.key});

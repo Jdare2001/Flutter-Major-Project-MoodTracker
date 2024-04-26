@@ -2,8 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:moodtracker/model/database_helper.dart';
 import 'package:moodtracker/utilities/BarChart/bar_graph.dart';
-
-import 'package:moodtracker/utilities/top_app_bar.dart';
+import 'package:moodtracker/utilities/Components/top_app_bar.dart';
 
 class JournalScreen extends StatefulWidget {
   const JournalScreen({super.key});
@@ -106,6 +105,21 @@ class _JournalScreenState extends State<JournalScreen> {
               Text(
                 "Average Happiness: ${getAverageHappiness()!.toStringAsFixed(2)}",
                 style: const TextStyle(fontSize: 28),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/WeekAtAGlance');
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.tertiary,
+                    padding: const EdgeInsets.all(20)),
+                child: Text(
+                  "Week At A Glance",
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600),
+                ),
               ),
               const SizedBox(
                 height: 15,

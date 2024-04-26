@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:moodtracker/model/mood_tracker_db.dart';
 
 class AddHabitAlertDialog extends StatefulWidget {
   final TextEditingController controller;
@@ -23,7 +22,6 @@ class AddHabitAlertDialog extends StatefulWidget {
 }
 
 class _AddHabitAlertDialogState extends State<AddHabitAlertDialog> {
-  MoodtrackerDb db = MoodtrackerDb();
   int selectedType = 0;
   bool checkValue = true;
   void _showDialog(Widget child) {
@@ -151,18 +149,4 @@ class _AddHabitAlertDialogState extends State<AddHabitAlertDialog> {
     ('Self Care'),
     ('Learning'),
   ];
-
-  isSelected() {}
-}
-
-enum HabitTypes {
-  unspecified,
-  exercise,
-  mentalHealth,
-  diet,
-  social,
-  finance,
-  mindfullness,
-  selfCare,
-  learning,
 }
