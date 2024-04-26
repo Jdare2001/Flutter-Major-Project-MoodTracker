@@ -104,6 +104,22 @@ class _JournalScreenState extends State<JournalScreen> {
                   maxY: 10,
                 ),
               ),
+              const SizedBox(
+                height: 15,
+              ),
+              const Text("Negative Habits Done",
+                  style: TextStyle(fontSize: 20)),
+              const SizedBox(
+                height: 15,
+              ),
+              Container(
+                padding: const EdgeInsets.only(right: 30),
+                height: 200,
+                child: TheBarChart(
+                  theBarData: getTheHappyList(),
+                  maxY: 10,
+                ),
+              ),
             ],
           ),
         ),

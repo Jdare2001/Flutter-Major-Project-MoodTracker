@@ -34,6 +34,7 @@ class TheBarChart extends StatelessWidget {
                     toY: data.y.toDouble(),
                     width: 15,
                     borderRadius: BorderRadius.circular(3),
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                 ],
               ),
