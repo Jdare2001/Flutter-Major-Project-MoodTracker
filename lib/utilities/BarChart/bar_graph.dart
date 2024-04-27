@@ -20,7 +20,10 @@ class TheBarChart extends StatelessWidget {
           show: false,
         ),
         borderData: FlBorderData(
-          show: true,
+          border: const Border(
+              top: BorderSide.none,
+              bottom: BorderSide(color: Colors.grey),
+              left: BorderSide(color: Colors.grey)),
         ),
         titlesData: const FlTitlesData(
             topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),

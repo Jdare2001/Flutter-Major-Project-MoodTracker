@@ -70,8 +70,11 @@ class _AddHabitAlertDialogState extends State<AddHabitAlertDialog> {
                     fontWeight: FontWeight.w600),
               ),
               Checkbox(
-                  value: checkValue,
-                  onChanged: (newValue) => onChanged(newValue)),
+                value: checkValue,
+                onChanged: (newValue) => onChanged(newValue),
+                checkColor: Theme.of(context).colorScheme.background,
+                activeColor: Theme.of(context).colorScheme.secondary,
+              ),
             ],
           ),
           Text(
@@ -104,7 +107,8 @@ class _AddHabitAlertDialogState extends State<AddHabitAlertDialog> {
                   ),
               child: Text(
                 habitTypes[selectedType],
-                style: const TextStyle(
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
                   fontSize: 22.0,
                 ),
               )),

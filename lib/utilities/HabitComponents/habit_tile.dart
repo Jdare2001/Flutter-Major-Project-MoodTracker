@@ -48,6 +48,8 @@ class HabitTileWidget extends StatelessWidget {
                   shape: const CircleBorder(),
                   value: completed,
                   onChanged: onChecked,
+                  checkColor: Theme.of(context).colorScheme.background,
+                  activeColor: Theme.of(context).colorScheme.secondary,
                 ),
                 Expanded(
                   child: Column(
