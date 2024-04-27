@@ -15,14 +15,14 @@ class _JournalScreenState extends State<JournalScreen> {
   @override
   void initState() {
     super.initState();
-    getAverage();
-    getHappyList();
-    getGoodList();
-    getNegList();
+    getAverageFromDB();
+    getHappyListFromDB();
+    getGoodListFromDB();
+    getNegListFromDB();
   }
 
   double? average = 0.0;
-  Future getAverage() async {
+  Future getAverageFromDB() async {
     double? adv;
     adv = await DatabaseHelper().getHappinessAdverage(currentUser);
     average = adv;
@@ -31,7 +31,7 @@ class _JournalScreenState extends State<JournalScreen> {
 
   List<int>? happyListed = [];
   List<int>? goodListed = List<int>.filled(7, 0);
-  getHappyList() async {
+  getHappyListFromDB() async {
     happyListed =
         await DatabaseHelper().getHappyListDataForLastWeek(currentUser);
     setState(() {});
@@ -47,7 +47,7 @@ class _JournalScreenState extends State<JournalScreen> {
   }
 
   List<int>? goodHabListed = [];
-  getGoodList() async {
+  getGoodListFromDB() async {
     goodHabListed = await DatabaseHelper()
         .getGoodHabListDataAmountsForLastWeek(currentUser);
     setState(() {});
@@ -62,7 +62,7 @@ class _JournalScreenState extends State<JournalScreen> {
   }
 
   List<int>? negHabListed = [];
-  getNegList() async {
+  getNegListFromDB() async {
     negHabListed =
         await DatabaseHelper().getNegHabListDataAmountsForLastWeek(currentUser);
     setState(() {});
