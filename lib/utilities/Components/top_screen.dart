@@ -5,6 +5,7 @@ import 'package:moodtracker/Screens/habits_screen.dart';
 import 'package:moodtracker/Screens/home_screen.dart';
 import 'package:moodtracker/Screens/journal_screen.dart';
 
+// page is a scaffold that adds the navigation bar and page navigation
 class TopLevelScreen extends StatefulWidget {
   const TopLevelScreen({super.key});
 
