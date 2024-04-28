@@ -44,7 +44,7 @@ class TheBarChart extends StatelessWidget {
             )
             .toList(),
       ),
-      swapAnimationDuration: Duration(milliseconds: 450),
+      swapAnimationDuration: const Duration(milliseconds: 450),
     );
   }
 }
