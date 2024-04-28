@@ -9,6 +9,7 @@ class LoginButton extends StatelessWidget {
     required this.buttonName,
   });
 
+  //this detects the tap gesture similar to a button but with more design flexability
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
