@@ -49,6 +49,7 @@ class _HomePageState extends State<HomePage> {
     percent = await DatabaseHelper().getPercentDone(currentUser) as double;
   }
 
+  /// extra functions to get around errors from asyncronus functions and to null check
   getDoublePercent() {
     getPercentDone();
 
