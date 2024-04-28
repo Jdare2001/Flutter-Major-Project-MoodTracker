@@ -24,6 +24,7 @@ class HabitTileWidget extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.all(15),
         child: Slidable(
+          //when slide this button is revealed
           endActionPane: ActionPane(
             motion: const StretchMotion(),
             children: [
