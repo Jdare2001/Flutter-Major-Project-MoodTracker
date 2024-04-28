@@ -1,3 +1,4 @@
+//single bar class combined in list for barchart data
 class SingleBar {
   final int x;
   final int y;
