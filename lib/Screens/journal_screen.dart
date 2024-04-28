@@ -46,6 +46,7 @@ class _JournalScreenState extends State<JournalScreen> {
     }
   }
 
+  /// extra functions to get around errors from asyncronus functions
   List<int>? goodHabListed = [];
   getGoodListFromDB() async {
     goodHabListed = await DatabaseHelper()
