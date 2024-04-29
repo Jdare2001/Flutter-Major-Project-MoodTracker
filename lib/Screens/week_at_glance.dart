@@ -31,6 +31,7 @@ class _WeekAtAGlanceState extends State<WeekAtAGlance> {
     setState(() {});
   }
 
+  /// extra functions to get around errors from asyncronus functions
   double? getAverageHappiness() {
     if (average != 0.0) {
       return average;

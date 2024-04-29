@@ -69,6 +69,7 @@ class _AddHabitAlertDialogState extends State<AddHabitAlertDialog> {
                     color: Theme.of(context).colorScheme.onSurface,
                     fontWeight: FontWeight.w600),
               ),
+              //habit type checkbox
               Checkbox(
                 value: checkValue,
                 onChanged: (newValue) => onChanged(newValue),
@@ -83,6 +84,7 @@ class _AddHabitAlertDialogState extends State<AddHabitAlertDialog> {
                 color: Theme.of(context).colorScheme.onSurface,
                 fontWeight: FontWeight.w600),
           ),
+          //dialog for the habit type picker
           CupertinoButton(
               padding: EdgeInsets.zero,
               onPressed: () => _showDialog(

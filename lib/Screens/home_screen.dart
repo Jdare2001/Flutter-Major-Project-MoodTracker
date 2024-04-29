@@ -40,6 +40,8 @@ class _HomePageState extends State<HomePage> {
   getUsernameText() {
     if (username != "") {
       return username;
+    } else {
+      return "";
     }
   }
 

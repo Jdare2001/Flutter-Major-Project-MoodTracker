@@ -1,6 +1,7 @@
 import 'package:moodtracker/utilities/BarChart/single_bar.dart';
 import 'package:moodtracker/utilities/date_time_converter.dart';
 
+//creates the bar data by taking in the data and then creating a list of the single bar objects
 class BarData {
   final int day1;
   final int day2;
