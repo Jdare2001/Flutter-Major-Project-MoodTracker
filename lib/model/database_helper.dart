@@ -176,18 +176,24 @@ class DatabaseHelper {
 
     QuerySnapshot querySnapshot = await collectionRef.get();
     // Process query results
-    querySnapshot.docs.forEach((doc) {
-      if (int.parse(doc['date']) >= getXDaysAgo(7)) {
-        DateTime date = DateTime.parse(doc['date']);
-        int daysDifference = DateTime.now().difference(date).inDays;
-        int index = 6 - daysDifference;
-        if (index >= 0 && index < 7) {
-          List goodList = doc['posHabList'];
-          double result = goodList.length / doc['numPosHabs'];
-          dataList[index] = ((result * 100).toInt());
+    querySnapshot.docs.forEach(
+      (doc) {
+        if (int.parse(doc['date']) >= getXDaysAgo(7)) {
+          DateTime date = DateTime.parse(doc['date']);
+          int daysDifference = DateTime.now().difference(date).inDays;
+          int index = 6 - daysDifference;
+          if (index >= 0 && index < 7) {
+            List goodList = doc['posHabList'];
+            double result = goodList.length / doc['numPosHabs'];
+            if (doc['numPosHabs'] == 0) {
+              dataList[index] = 0;
+            } else {
+              dataList[index] = ((result * 100).toInt());
+            }
+          }
         }
-      }
-    });
+      },
+    );
 
     return dataList;
   }
@@ -215,7 +221,11 @@ class DatabaseHelper {
         if (index >= 0 && index < 7) {
           List negList = doc['negHabList'];
           double result = negList.length / doc['numNegHabs'];
-          dataList[index] = ((result * 100).toInt());
+          if (doc['numNegHabs'] == 0) {
+            dataList[index] = 0;
+          } else {
+            dataList[index] = ((result * 100).toInt());
+          }
         }
       }
     });
