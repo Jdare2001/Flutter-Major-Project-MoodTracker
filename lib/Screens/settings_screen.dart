@@ -22,7 +22,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool isDarkTheme = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
@@ -34,22 +33,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: Center(
           child: Column(
         children: [
-          Row(
-            children: [
-              const Text(
-                "Dark Mode",
-                style: TextStyle(fontSize: 30),
-              ),
-              Switch(
-                value: isDarkTheme,
-                onChanged: (isOn) {
-                  isOn
-                      ? _toggleTheme(ThemeMode.dark)
-                      : _toggleTheme(ThemeMode.light);
-                },
-              )
-            ],
-          ),
           const Divider(),
           GestureDetector(
             onTap: signOutUser,
