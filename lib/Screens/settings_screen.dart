@@ -9,12 +9,6 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  void _toggleTheme(ThemeMode themeMode) {
-    setState(() {
-      themeMode = themeMode;
-    });
-  }
-
   void signOutUser() {
     FirebaseAuth.instance.signOut();
     Navigator.pop(context);
