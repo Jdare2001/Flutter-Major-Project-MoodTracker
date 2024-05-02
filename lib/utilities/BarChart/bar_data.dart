@@ -24,13 +24,13 @@ class BarData {
 
   void initializeBarData() {
     chartData = [
-      SingleBar(x: getXDaysAgo(7) % 100 + 1, y: day1),
-      SingleBar(x: getXDaysAgo(6) % 100 + 1, y: day2),
-      SingleBar(x: getXDaysAgo(5) % 100 + 1, y: day3),
-      SingleBar(x: getXDaysAgo(4) % 100 + 1, y: day4),
-      SingleBar(x: getXDaysAgo(3) % 100 + 1, y: day5),
-      SingleBar(x: getXDaysAgo(2) % 100 + 1, y: day6),
-      SingleBar(x: getXDaysAgo(1) % 100 + 1, y: day7),
+      SingleBar(x: getXDaysAgo(6) % 100, y: day1),
+      SingleBar(x: getXDaysAgo(5) % 100, y: day2),
+      SingleBar(x: getXDaysAgo(4) % 100, y: day3),
+      SingleBar(x: getXDaysAgo(3) % 100, y: day4),
+      SingleBar(x: getXDaysAgo(2) % 100, y: day5),
+      SingleBar(x: getXDaysAgo(1) % 100, y: day6),
+      SingleBar(x: int.parse(todaysDateFormatedString()) % 100, y: day7),
     ];
   }
 }
