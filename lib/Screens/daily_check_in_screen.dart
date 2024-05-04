@@ -127,7 +127,7 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
         message = "5 - Content";
         break;
       case 6:
-        message = "6 - Chearful";
+        message = "6 - Cheerful";
         break;
       case 7:
         message = "7 - Happy";
