@@ -17,8 +17,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> signInUser() async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text);
+      
     } on FirebaseAuthException catch (e) {
       if (e.code == 'INVALID_LOGIN_CREDENTIALS') {
         userNotFoundDialog();
